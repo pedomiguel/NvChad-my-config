@@ -13,7 +13,7 @@ local options = {
     prompt_prefix = "   ",
     selection_caret = "  ",
     entry_prefix = "  ",
-    initial_mode = "insert",
+    initial_mode = "normal",
     selection_strategy = "reset",
     sorting_strategy = "ascending",
     layout_strategy = "horizontal",
@@ -21,6 +21,7 @@ local options = {
       horizontal = {
         prompt_position = "top",
         preview_width = 0.55,
+        results_width = 0.8,
       },
       vertical = {
         mirror = false,
@@ -48,7 +49,15 @@ local options = {
     },
   },
 
-  extensions_list = { "themes", "terms" },
+  extensions_list = { "themes", "terms", "fzf" },
+  extensions = {
+    fzf = {
+      fuzzy = true,
+      override_generic_sorter = true,
+      override_file_sorter = true,
+      case_mode = "smart_case",
+    },
+  },
 }
 
 return options

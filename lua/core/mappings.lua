@@ -23,6 +23,12 @@ M.general = {
     ["<C-j>"] = { "<C-w>j", "Window down" },
     ["<C-k>"] = { "<C-w>k", "Window up" },
 
+    -- Resize windows
+    ["<C-Up>"] = { "<cmd> resize +2 <CR>", "Decrease vertical window size" },
+    ["<C-Down>"] = { "<cmd> resize -2 <CR>", "Increase vertical window size" },
+    ["<C-Right>"] = { "<cmd> vertical resize +2 <CR>", "Increase horizontal window size" },
+    ["<C-Left>"] = { "<cmd> vertical resize -2 <CR>", "Decrease horizontal window size" },
+
     -- save
     ["<C-s>"] = { "<cmd> w <CR>", "Save file" },
 
