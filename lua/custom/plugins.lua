@@ -1,14 +1,10 @@
 local plugins = {
   {
-    "mfussenegger/nvim-jdtls",
-    ft = "java",
-  },
-  {
     "williamboman/mason-lspconfig.nvim",
   },
   {
     "mfussenegger/nvim-dap", -- Debugging
-    config = function(_, opts)
+    config = function(_, _)
       require("core.utils").load_mappings("dap")
     end
   },
@@ -60,6 +56,7 @@ local plugins = {
     dependencies = {
       "jose-elias-alvarez/null-ls.nvim",
       config = function ()
+        require "plugins.configs.lspconfig"
         require "custom.configs.null-ls"
       end,
     },
@@ -72,12 +69,10 @@ local plugins = {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
+        "lua-language-server",
         "pyright",
-        -- "debugpy",
         "clangd",
         "codelldb",
-        "html-lsp",
-        "jdtls",
       },
     },
   },
