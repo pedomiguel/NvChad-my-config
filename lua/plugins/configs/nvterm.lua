@@ -21,7 +21,7 @@ local options = {
       confirm = true,
     },
     close_on_exit = true,
-    auto_insert = false,
+    auto_insert = true,
   },
 }
 
