@@ -8,6 +8,13 @@ M.dap = {
   }
 }
 
+M.tag = {
+  n = {
+    ["<leader>tt"] = { "<cmd> TagbarToggle <CR>", "Toggle Tagbar" },
+  }
+}
+
+
 -- M.dap_python = {
 --   plugin = true,
 --   n = {
