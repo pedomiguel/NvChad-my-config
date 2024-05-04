@@ -35,8 +35,8 @@ M.ui = {
     -- default/round/block/arrow separators work only for default statusline theme
     -- round and block will work for minimal theme only
     separator_style = "block",
-    order = nil,
-    modules = nil,
+    order = { "treeOffset", "buffers", "tabs", "btns" },
+    modules = nil
   },
 
   -- lazyload it when there are 1+ buffers

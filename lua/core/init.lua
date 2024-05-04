@@ -15,7 +15,7 @@ opt.showmode = false
 -- vim.o.wrap = true
 
 opt.clipboard = "unnamedplus"
-opt.cursorline = true
+opt.cursorline = false
 opt.guicursor = "a:blinkon100"
 opt.relativenumber = true
 
