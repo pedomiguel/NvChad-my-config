@@ -17,7 +17,6 @@ opt.showmode = false
 opt.clipboard = "unnamedplus"
 opt.cursorline = false
 opt.guicursor = "a:blinkon100"
-opt.relativenumber = true
 
 -- Indenting
 opt.expandtab = true
@@ -35,6 +34,7 @@ opt.mouse = "a"
 opt.number = true
 opt.numberwidth = 2
 opt.ruler = false
+opt.relativenumber = true
 
 -- disable nvim intro
 opt.shortmess:append "sI"
