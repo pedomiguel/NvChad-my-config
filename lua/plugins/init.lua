@@ -224,8 +224,6 @@ local default_plugins = {
     config = function(_, opts)
       dofile(vim.g.base46_cache .. "nvimtree")
       require("nvim-tree").setup(opts)
-      local api = require("nvim-tree.api")
-      api.tree.toggle({ focus = false })
     end,
   },
 

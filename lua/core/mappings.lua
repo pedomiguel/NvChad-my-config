@@ -50,6 +50,9 @@ M.general = {
 
     -- new buffer
     ["<leader>b"] = { "<cmd> enew <CR>", "New buffer" },
+    ["<leader>x"] = { "<cmd> bdelete <CR>", "Close current buffer" },
+    ["<tab>"] = { "<cmd> bnext <CR>", "Go to next buffer" },
+    ["<S-tab>"] = { "<cmd> bprevious <CR>", "Go to previous buffer" },
     ["<leader>ch"] = { "<cmd> NvCheatsheet <CR>", "Mapping cheatsheet" },
 
     ["<leader>fm"] = {

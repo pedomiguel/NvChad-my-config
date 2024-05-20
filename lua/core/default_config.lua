@@ -10,8 +10,8 @@ M.ui = {
   hl_add = {},
   hl_override = {},
   changed_themes = {},
-  theme_toggle = { "catppuccin", "gatekeeper" },
-  theme = "catppuccin", -- default theme
+  theme_toggle = { "onedark", "one_light" },
+  theme = "onedark", -- default theme
   transparency = false,
   lsp_semantic_tokens = false, -- needs nvim v0.9, just adds highlight groups for lsp semantic tokens
 
@@ -34,9 +34,9 @@ M.ui = {
     theme = "default", -- default/vscode/vscode_colored/minimal
     -- default/round/block/arrow separators work only for default statusline theme
     -- round and block will work for minimal theme only
-    separator_style = "block",
-    order = { "treeOffset", "buffers", "tabs", "btns" },
-    modules = nil
+    separator_style = "default",
+    order = nil,
+    modules = nil,
   },
 
   -- lazyload it when there are 1+ buffers
@@ -49,7 +49,7 @@ M.ui = {
 
   -- nvdash (dashboard)
   nvdash = {
-    load_on_startup = true,
+    load_on_startup = false,
 
     header = {
       "           ▄ ▄                   ",
@@ -64,7 +64,6 @@ M.ui = {
     },
 
     buttons = {
-      { "  Focus Nvimtree", "Spc e  ", "NvimTreeFocus" },
       { "  Find File", "Spc f f", "Telescope find_files" },
       { "󰈚  Recent Files", "Spc f o", "Telescope oldfiles" },
       { "󰈭  Find Word", "Spc f w", "Telescope live_grep" },
