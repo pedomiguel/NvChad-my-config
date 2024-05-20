@@ -7,8 +7,7 @@ M.ui = {
 
   statusline = {
     theme = "minimal",
-    order = nil,
-    modules = nil,
+    separator_style = "block",
   },
 
   tabufline = {
