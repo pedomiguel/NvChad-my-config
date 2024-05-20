@@ -1,7 +1,7 @@
 local plugins = {
   {
     "preservim/tagbar",
-    event = "VeryLazy",
+    lazy = false,
     config = function()
       vim.g.tagbar_width = math.max(30, vim.api.nvim_win_get_width(0) / 5)
       vim.g.tagbar_show_tag_linenumbers = 1
@@ -12,6 +12,13 @@ local plugins = {
       vim.g.tagbar_iconchars = {'', ''}
       vim.api.nvim_set_hl(0, "TagbarComment", {fg = "NONE"})
       vim.api.nvim_set_hl(0, "TagbarHighlight", {bg = "NvimDarkGrey3"})
+    end
+  },
+  {
+    "brianaung/yasl.nvim",
+    lazy = false,
+    config = function()
+      require("yasl").setup() -- call this to enable plugin
     end
   },
   {
