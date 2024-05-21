@@ -6,6 +6,8 @@ M.ui = {
   transparency = false,
 
   statusline = {
+    enabled = false,
+    lazyload = false,
     theme = "minimal",
     separator_style = "block",
   },

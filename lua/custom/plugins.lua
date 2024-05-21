@@ -10,6 +10,7 @@ local plugins = {
       vim.g.tagbar_wrap = 0
       vim.g.tagbar_sort = 0
       vim.g.tagbar_iconchars = {'', ''}
+      vim.g.tagbar_map_togglepause = ''
       vim.api.nvim_set_hl(0, "TagbarComment", {fg = "NONE"})
       vim.api.nvim_set_hl(0, "TagbarHighlight", {bg = "NvimDarkGrey3"})
     end
@@ -17,8 +18,27 @@ local plugins = {
   {
     "brianaung/yasl.nvim",
     lazy = false,
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {},
     config = function()
-      require("yasl").setup() -- call this to enable plugin
+      require("yasl").setup({
+        components = {
+          "mode",
+          " ",
+          "%<%t%h%m%r%w", -- filename
+          " ",
+          "branch",
+          " ",
+          "%=",
+          "%=",
+          "diagnostics",
+          " ",
+          "filetype",
+          " ",
+          "[%-8.(%l, %c%V%) %p%%]", -- location, and progress
+          " ",
+        }
+      })
     end
   },
   {

@@ -1,9 +1,14 @@
 local options = {
   ensure_installed = {
-    "lua",
+    -- Main Languages
     "c",
     "cpp",
-    "python"
+    "python",
+
+    -- Config Languages
+    "lua",
+    "markdown",
+    "vimdoc",
   },
 
   highlight = {
