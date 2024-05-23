@@ -7,14 +7,12 @@ M.ui = {
 
   statusline = {
     enabled = false,
-    lazyload = false,
     theme = "minimal",
     separator_style = "block",
   },
 
   tabufline = {
     enabled = false,
-    lazyload = false
   },
 
   nvdash = {

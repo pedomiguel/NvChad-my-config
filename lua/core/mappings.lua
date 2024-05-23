@@ -4,10 +4,6 @@ local M = {}
 
 M.general = {
   i = {
-    -- go to  beginning and end
-    ["<C-b>"] = { "<ESC>^i", "Beginning of line" },
-    ["<C-e>"] = { "<End>", "End of line" },
-
     -- navigate within insert mode
     ["<C-h>"] = { "<Left>", "Move left" },
     ["<C-l>"] = { "<Right>", "Move right" },
@@ -48,7 +44,7 @@ M.general = {
     ["<Up>"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true } },
     ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
 
-    -- new buffer
+    -- manage buffers
     ["<leader>b"] = { "<cmd> enew <CR>", "New buffer" },
     ["<leader>x"] = { "<cmd> bdelete <CR>", "Close current buffer" },
     ["<tab>"] = { "<cmd> bnext <CR>", "Go to next buffer" },
@@ -61,10 +57,6 @@ M.general = {
       end,
       "LSP formatting",
     },
-  },
-
-  t = {
-    ["<C-x>"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), "Escape terminal mode" },
   },
 
   v = {
@@ -80,35 +72,6 @@ M.general = {
     -- Don't copy the replaced text after pasting in visual mode
     -- https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text#Alternative_mapping_for_paste
     ["p"] = { 'p:let @+=@0<CR>:let @"=@0<CR>', "Dont copy replaced text", opts = { silent = true } },
-  },
-}
-
-M.tabufline = {
-  plugin = true,
-
-  n = {
-    -- cycle through buffers
-    ["<tab>"] = {
-      function()
-        require("nvchad.tabufline").tabuflineNext()
-      end,
-      "Goto next buffer",
-    },
-
-    ["<S-tab>"] = {
-      function()
-        require("nvchad.tabufline").tabuflinePrev()
-      end,
-      "Goto prev buffer",
-    },
-
-    -- close buffer + hide terminal buffer
-    ["<leader>x"] = {
-      function()
-        require("nvchad.tabufline").close_buffer()
-      end,
-      "Close buffer",
-    },
   },
 }
 

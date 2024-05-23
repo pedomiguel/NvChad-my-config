@@ -18,10 +18,10 @@ local plugins = {
   {
     "brianaung/yasl.nvim",
     lazy = false,
-    dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {},
     config = function()
       require("yasl").setup({
+        enable_icons = false,
         components = {
           "mode",
           " ",
@@ -37,7 +37,18 @@ local plugins = {
           " ",
           "[%-8.(%l, %c%V%) %p%%]", -- location, and progress
           " ",
-        }
+          {
+            events = { "BufEnter", "BufWritePost", "TextChanged", "BufModifiedSet" },
+            update = function ()
+              if vim.bo.modified then
+                return ''
+              else
+                return ''
+              end
+            end
+          },
+          " ",
+        },
       })
     end
   },
