@@ -21,11 +21,18 @@ local plugins = {
     opts = {},
     config = function()
       require("yasl").setup({
-        enable_icons = false,
+        enable_icons = true,
         components = {
           "mode",
           " ",
-          "%<%t%h%m%r%w", -- filename
+          {
+            events = { "BufEnter", "BufWritePost", "TextChanged", "BufModifiedSet" },
+            update = function ()
+              return vim.bo.modified and '󱞇' or ''
+            end
+          },
+          " ",
+          "%<%t%h%r%w", -- filename
           " ",
           "branch",
           " ",
@@ -35,18 +42,7 @@ local plugins = {
           " ",
           "filetype",
           " ",
-          "[%-8.(%l, %c%V%) %p%%]", -- location, and progress
-          " ",
-          {
-            events = { "BufEnter", "BufWritePost", "TextChanged", "BufModifiedSet" },
-            update = function ()
-              if vim.bo.modified then
-                return ''
-              else
-                return ''
-              end
-            end
-          },
+          "%-8.(%l:%c%V%) %p%%", -- location, and progress
           " ",
         },
       })
