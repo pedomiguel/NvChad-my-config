@@ -28,7 +28,7 @@ local plugins = {
           {
             events = { "BufEnter", "BufWritePost", "TextChanged", "BufModifiedSet" },
             update = function ()
-              return vim.bo.modified and '󱞇' or ''
+              return vim.bo.modified and '󱇧' or ''
             end
           },
           " ",

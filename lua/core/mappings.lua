@@ -25,9 +25,6 @@ M.general = {
     ["<C-Right>"] = { "<cmd> vertical resize +2 <CR>", "Increase horizontal window size" },
     ["<C-Left>"] = { "<cmd> vertical resize -2 <CR>", "Decrease horizontal window size" },
 
-    -- save
-    ["<C-s>"] = { "<cmd> w <CR>", "Save file" },
-
     -- Copy all
     ["<C-c>"] = { "<cmd> %y+ <CR>", "Copy whole file" },
 
@@ -251,16 +248,17 @@ M.telescope = {
     ["<leader>fz"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "Find in current buffer" },
 
     -- git
-    -- ["<leader>cm"] = { "<cmd> Telescope git_commits <CR>", "Git commits" },
     ["<leader>gt"] = { "<cmd> Telescope git_status <CR>", "Git status" },
 
-    -- pick a hidden term
-    ["<leader>pt"] = { "<cmd> Telescope terms <CR>", "Pick hidden term" },
-
-    -- theme switcher
+    -- ui
     ["<leader>th"] = { "<cmd> Telescope themes <CR>", "Nvchad themes" },
 
-    ["<leader>ma"] = { "<cmd> Telescope marks <CR>", "telescope bookmarks" },
+    -- diagnostic
+    ["<leader>fd"] = { "<cmd> Telescope diagnostics <CR>", "Telescope diagnostics"},
+
+    -- vim marks and registers
+    ["<leader>ma"] = { "<cmd> Telescope marks <CR>", "Telescope bookmarks" },
+    ["<leader>rg"] = { "<cmd> Telescope registers <CR>", "Telescope registers" },
   },
 }
 
