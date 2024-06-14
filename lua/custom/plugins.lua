@@ -1,5 +1,9 @@
 local plugins = {
   {
+    "tpope/vim-surround",
+    lazy = false,
+  },
+  {
     "preservim/tagbar",
     lazy = false,
     config = function()
