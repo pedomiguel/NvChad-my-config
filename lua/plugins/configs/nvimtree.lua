@@ -17,6 +17,7 @@ local options = {
     width = 25,
     preserve_window_proportions = true,
     centralize_selection = true,
+    cursorline = false,
   },
   git = {
     enable = false,

@@ -28,6 +28,9 @@ M.general = {
     -- Copy all
     ["<C-c>"] = { "<cmd> %y+ <CR>", "Copy whole file" },
 
+    ["gi"] = { "ggO", "Insert in the beggining of the file" },
+    ["ga"] = { "Go", "Insert in the end of the file" },
+
     -- line numbers
     ["<leader>n"] = { "<cmd> set nu! <CR>", "Toggle line number" },
     ["<leader>rn"] = { "<cmd> set rnu! <CR>", "Toggle relative number" },
@@ -120,7 +123,7 @@ M.lspconfig = {
       "LSP hover",
     },
 
-    ["gi"] = {
+    ["gl"] = {
       function()
         vim.lsp.buf.implementation()
       end,

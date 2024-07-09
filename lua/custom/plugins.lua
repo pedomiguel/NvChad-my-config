@@ -1,5 +1,18 @@
 local plugins = {
   {
+    "m4xshen/hardtime.nvim",
+    dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+    opts = {
+      disabled_filetypes = { "qf", "netrw", "NvimTree", "lazy", "mason", "telescope", "tagbar", "oil" },
+      enabled = true,
+      hint = true,
+    }
+  },
+  {
+    "christoomey/vim-tmux-navigator",
+    lazy = false,
+  },
+  {
     "tpope/vim-surround",
     lazy = false,
   },

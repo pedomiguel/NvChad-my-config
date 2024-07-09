@@ -48,6 +48,7 @@ local options = {
       n = {
         ["q"] = require("telescope.actions").close,
         ["x"] = require("telescope.actions").delete_buffer,
+        ["<C-h>"] = require("telescope.actions").file_split,
         ["<C-Up>"] = require("telescope.actions").cycle_history_prev,
         ["<C-Down>"] = require("telescope.actions").cycle_history_next,
       },
