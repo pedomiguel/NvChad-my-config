@@ -4,6 +4,10 @@ local plugins = {
     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
     opts = {
       disabled_filetypes = { "qf", "netrw", "NvimTree", "lazy", "mason", "telescope", "tagbar", "oil" },
+      restricted_keys = {
+        ["<C-N>"] = {},
+        ["<C-P>"] = {},
+      },
       enabled = true,
       hint = true,
     }
