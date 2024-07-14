@@ -13,6 +13,11 @@ M.general = {
 
   n = {
     ["<Esc>"] = { "<cmd> noh <CR>", "Clear highlights" },
+
+    -- adding blank lines
+    ["zj"] = { "o<Esc>k", "Add blank line below" },
+    ["zk"] = { "O<Esc>j", "Add blank line above" },
+
     -- switch between windows
     ["<C-h>"] = { "<C-w>h", "Window left" },
     ["<C-l>"] = { "<C-w>l", "Window right" },
@@ -50,6 +55,10 @@ M.general = {
     ["<tab>"] = { "<cmd> bnext <CR>", "Go to next buffer" },
     ["<S-tab>"] = { "<cmd> bprevious <CR>", "Go to previous buffer" },
     ["<leader>ch"] = { "<cmd> NvCheatsheet <CR>", "Mapping cheatsheet" },
+
+    -- quickfix list navigation
+    ["]q"] = { "<cmd> cnext <CR>", "Go to next buffer in quickfix list" },
+    ["[q"] = { "<cmd> cprevious <CR>", "Go to previous buffer in quickfix list" },
 
     ["<leader>fm"] = {
       function()

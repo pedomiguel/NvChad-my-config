@@ -9,7 +9,7 @@ M.general = {
   }
 }
 
-M.tag = {
+M.tagbar = {
   n = {
     ["<leader>tt"] = { "<cmd> TagbarToggle <CR>", "Toggle Tagbar" },
   }

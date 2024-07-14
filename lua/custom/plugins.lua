@@ -17,7 +17,7 @@ local plugins = {
     lazy = false,
   },
   {
-    "preservim/tagbar",
+    "preservim/tagbar", -- sudo apt-get install exuberant-ctags
     lazy = false,
     config = function()
       vim.g.tagbar_width = math.max(30, vim.api.nvim_win_get_width(0) / 5)
@@ -39,6 +39,7 @@ local plugins = {
     config = function()
       require("yasl").setup({
         enable_icons = true,
+        transparent = true,
         components = {
           "mode",
           " ",
@@ -53,20 +54,17 @@ local plugins = {
           " ",
           "branch",
           " ",
-          "%=",
+          "gitdiff",
           "%=",
           "diagnostics",
           " ",
           "filetype",
           " ",
-          "%-8.(%l:%c%V%) %p%%", -- location, and progress
+          "%-8.(%l:%c%V%)|%p%%", -- location, and progress
           " ",
         },
       })
     end
-  },
-  {
-    "williamboman/mason-lspconfig.nvim",
   },
   {
     "neovim/nvim-lspconfig",
@@ -80,7 +78,7 @@ local plugins = {
     opts = {
       ensure_installed = {
         "lua-language-server",
-        "pyright",
+        "pyright", -- node >= 18.0
         "clangd",
         "codelldb"
       },

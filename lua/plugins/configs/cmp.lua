@@ -47,6 +47,12 @@ end
 local options = {
   completion = {
     completeopt = "menu,menuone",
+    autocomplete = false,
+  },
+  view = {
+    docs = {
+      auto_open = false,
+    },
   },
 
   window = {
@@ -71,14 +77,29 @@ local options = {
   mapping = {
     ["<C-p>"] = cmp.mapping.select_prev_item(),
     ["<C-n>"] = cmp.mapping.select_next_item(),
-    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-f>"] = cmp.mapping.scroll_docs(4),
-    ["<C-Space>"] = cmp.mapping.complete(),
-    ["<C-e>"] = cmp.mapping.close(),
+    ["<C-d>"] = cmp.mapping.scroll_docs(4),
+    ["<C-u>"] = cmp.mapping.scroll_docs(-4),
     ["<CR>"] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Insert,
       select = true,
     },
+
+    ["<C-Space>"] = function()
+      if cmp.visible() then
+        cmp.close()
+      else
+        cmp.complete()
+      end
+    end,
+
+    ['<C-g>'] = function()
+      if cmp.visible_docs() then
+        cmp.close_docs()
+      else
+        cmp.open_docs()
+      end
+    end,
+
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -91,6 +112,7 @@ local options = {
       "i",
       "s",
     }),
+
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
@@ -103,6 +125,7 @@ local options = {
       "i",
       "s",
     }),
+
   },
   sources = {
     { name = "nvim_lsp" },
