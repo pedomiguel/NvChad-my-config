@@ -52,8 +52,8 @@ M.general = {
     -- manage buffers
     ["<leader>b"] = { "<cmd> enew <CR>", "New buffer" },
     ["<leader>x"] = { "<cmd> bdelete <CR>", "Close current buffer" },
-    ["<tab>"] = { "<cmd> bnext <CR>", "Go to next buffer" },
-    ["<S-tab>"] = { "<cmd> bprevious <CR>", "Go to previous buffer" },
+    ["<C-n>"] = { "<cmd> bnext <CR>", "Go to next buffer" },
+    ["<C-p>"] = { "<cmd> bprevious <CR>", "Go to previous buffer" },
     ["<leader>ch"] = { "<cmd> NvCheatsheet <CR>", "Mapping cheatsheet" },
 
     -- quickfix list navigation
@@ -238,11 +238,7 @@ M.nvimtree = {
   plugin = true,
 
   n = {
-    -- toggle
-    ["<C-n>"] = { "<cmd> NvimTreeToggle <CR>", "Toggle Nvimtree" },
-
-    -- focus
-    ["<leader>e"] = { "<cmd> NvimTreeFocus <CR>", "Focus Nvimtree" },
+    ["<leader>e"] = { "<cmd> NvimTreeToggle <CR>", "Toggle Nvimtree" },
   },
 }
 

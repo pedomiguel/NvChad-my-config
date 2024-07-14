@@ -18,9 +18,10 @@ M.ui = {
   nvdash = {
     load_on_startup = true,
     buttons = {
-      { "  Focus Nvimtree", "Spc e  ", "NvimTreeFocus" },
+      { "  Nvimtree", "Spc e  ", "NvimTreeToggle" },
       { "  Find File", "Spc f f", "Telescope find_files" },
       { "󰈚  Recent Files", "Spc f o", "Telescope oldfiles" },
+      { "  Git Status", "Spc g t", "Telescope git_status" },
       { "󰈭  Find Word", "Spc f w", "Telescope live_grep" },
       { "  Bookmarks", "Spc m a", "Telescope marks" },
       { "  Themes", "Spc t h", "Telescope themes" },
