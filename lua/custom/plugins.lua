@@ -13,6 +13,20 @@ local plugins = {
     }
   },
   {
+    "tpope/vim-repeat",
+    lazy = false,
+  },
+  {
+    "ggandor/leap.nvim",
+    lazy = false,
+    config = function ()
+      local leap = require("leap")
+      leap.add_default_mappings()
+      leap.opts_case_sensitive = true
+    end,
+    dependencies = { "tpope/vim-repeat" },
+  },
+  {
     "christoomey/vim-tmux-navigator",
     lazy = false,
   },
@@ -84,7 +98,6 @@ local plugins = {
         "lua-language-server",
         "pyright", -- node >= 18.0
         "clangd",
-        "codelldb"
       },
     },
   },

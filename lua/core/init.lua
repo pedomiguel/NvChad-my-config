@@ -12,7 +12,7 @@ g.transparency = config.ui.transparency
 opt.laststatus = 3 -- global statusline
 opt.showmode = false
 
--- vim.o.wrap = true
+opt.wrap = true
 
 opt.clipboard = "unnamedplus"
 opt.cursorline = false
@@ -66,6 +66,13 @@ vim.env.PATH = vim.fn.stdpath "data" .. "/mason/bin" .. (is_windows and ";" or "
 
 -------------------------------------- autocmds ------------------------------------------
 local autocmd = vim.api.nvim_create_autocmd
+
+autocmd("TextYankPost", {
+  pattern = "*",
+  callback = function ()
+    vim.highlight.on_yank { timeout = 250 }
+  end,
+})
 
 -- dont list quickfix buffers
 autocmd("FileType", {
