@@ -9,6 +9,19 @@ M.general = {
   }
 }
 
+M.leap = {
+  n = {
+    ["s"] = { "<Plug>(leap-forward)", "Leap forward" },
+    ["S"] = { "<Plug>(leap-backward)", "Leap backward" },
+    ["gs"] = { "<Plug>(leap-from-window)", "Leap from window" },
+  },
+  o = {
+    ["s"] = { "<Plug>(leap-forward)", "Leap forward" },
+    ["S"] = { "<Plug>(leap-backward)", "Leap backward" },
+    ["gs"] = { "<Plug>(leap-from-window)", "Leap from window" },
+  },
+}
+
 M.tagbar = {
   n = {
     ["<leader>tt"] = { "<cmd> TagbarToggle <CR>", "Toggle Tagbar" },

@@ -52,8 +52,9 @@ M.general = {
     -- manage buffers
     ["<leader>b"] = { "<cmd> enew <CR>", "New buffer" },
     ["<leader>x"] = { "<cmd> bdelete <CR>", "Close current buffer" },
-    ["<C-n>"] = { "<cmd> bnext <CR>", "Go to next buffer" },
-    ["<C-p>"] = { "<cmd> bprevious <CR>", "Go to previous buffer" },
+    ["<Tab>"] = { "<cmd> bnext <CR>", "Go to next buffer" },
+    ["<S-Tab>"] = { "<cmd> bprevious <CR>", "Go to previous buffer" },
+
     ["<leader>ch"] = { "<cmd> NvCheatsheet <CR>", "Mapping cheatsheet" },
 
     -- quickfix list navigation

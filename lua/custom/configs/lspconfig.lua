@@ -11,10 +11,11 @@ lspconfig.clangd.setup {
     on_attach(client, bufnr)
   end,
   capabilities = capabilities,
+  filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
 }
 
 lspconfig.pyright.setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  filetypes = {"python"},
+  filetypes = { "python" },
 }
