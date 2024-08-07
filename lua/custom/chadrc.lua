@@ -19,7 +19,7 @@ M.ui = {
     load_on_startup = true,
     buttons = {
       { "  Nvimtree", "Spc e  ", "NvimTreeToggle" },
-      { "  Find File", "Spc f f", "Telescope find_files" },
+      { "  Find File", "Spc f f", "Telescope find_files hidden=true" },
       { "󰈚  Recent Files", "Spc f o", "Telescope oldfiles" },
       { "  Git Status", "Spc g t", "Telescope git_status" },
       { "󰈭  Find Word", "Spc f w", "Telescope live_grep" },

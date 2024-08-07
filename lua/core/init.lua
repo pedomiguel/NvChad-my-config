@@ -68,21 +68,52 @@ vim.env.PATH = vim.fn.stdpath "data" .. "/mason/bin" .. (is_windows and ";" or "
 local autocmd = vim.api.nvim_create_autocmd
 
 autocmd("TextYankPost", {
-  pattern = "*",
+  pattern = '*',
   callback = function ()
-    vim.highlight.on_yank { timeout = 250 }
+    vim.highlight.on_yank { timeout = 100 }
   end,
+  desc = "Highlight yanked text"
 })
 
--- dont list quickfix buffers
+autocmd('BufWritePre', {
+  pattern = '*',
+  callback = function()
+    vim.cmd([[%s/\s\+$//e]])
+  end,
+  desc = "Trim trailing whitespace on save"
+})
+
+autocmd("VimEnter", {
+  callback = function(data)
+    local directory = vim.fn.isdirectory(data.file) == 1
+
+    if directory then
+      vim.cmd.cd(data.file)
+      vim.cmd "Telescope find_files"
+    end
+  end,
+  desc = "Open Telescope Find Files when in a directory",
+})
+
+autocmd('BufReadPost', {
+  pattern = '*',
+  callback = function()
+    local line = vim.fn.line
+    if line("'\"") > 0 and line("'\"") <= line("$") then
+      vim.cmd('normal! g`"')
+    end
+  end,
+  desc = "Open file at last cursor position"
+})
+
 autocmd("FileType", {
   pattern = "qf",
   callback = function()
     vim.opt_local.buflisted = false
   end,
+  desc = "Dont list quickfix buffers"
 })
 
--- reload some chadrc options on-save
 autocmd("BufWritePost", {
   pattern = vim.tbl_map(function(path)
     return vim.fs.normalize(vim.loop.fs_realpath(path))
@@ -118,6 +149,7 @@ autocmd("BufWritePost", {
     require("base46").load_all_highlights()
     -- vim.cmd("redraw!")
   end,
+  desc = "Reload some chadrc options on-save"
 })
 
 -------------------------------------- commands ------------------------------------------
