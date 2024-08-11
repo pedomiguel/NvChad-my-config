@@ -1,5 +1,15 @@
 local options = {
-  ensure_installed = { "lua-language-server" }, -- not an option from mason.nvim
+  ensure_installed = {
+    -- Lsp
+    "lua-language-server",
+    "pyright", -- node >= 18.0
+    "clangd",
+
+    -- Linters
+    -- "luacheck", -- luarocks must be installed
+    "cpplint",
+    "pylint",
+  },
 
   PATH = "skip",
 

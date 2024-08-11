@@ -1,3 +1,13 @@
+local actions = require("telescope.actions")
+
+local function close_buffer(prompt_bufrn)
+  local sucess, err = pcall(actions.delete_buffer, prompt_bufrn)
+
+  if not sucess then
+    print("Error: This buffer cannot be closed! (" .. err .. ")")
+  end
+end
+
 local options = {
   defaults = {
     vimgrep_arguments = {
@@ -46,11 +56,11 @@ local options = {
     buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
     mappings = {
       n = {
-        ["q"] = require("telescope.actions").close,
-        ["x"] = require("telescope.actions").delete_buffer,
-        ["<C-h>"] = require("telescope.actions").file_split,
-        ["<C-Up>"] = require("telescope.actions").cycle_history_prev,
-        ["<C-Down>"] = require("telescope.actions").cycle_history_next,
+        ["q"] = actions.close,
+        ["x"] = close_buffer,
+        ["<C-h>"] = actions.file_split,
+        ["<C-Up>"] = actions.cycle_history_prev,
+        ["<C-Down>"] = actions.cycle_history_next,
       },
     },
   },

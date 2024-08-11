@@ -95,15 +95,26 @@ local plugins = {
   },
 
   {
-    "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "lua-language-server",
-        "pyright", -- node >= 18.0
-        "clangd",
-      },
-    },
+    "williamboman/mason-lspconfig.nvim",
   },
+
+  {
+    "mfussenegger/nvim-lint",
+    event = {
+      "BufReadPre",
+      "BufNewFile",
+    },
+    config = function ()
+      local lint = require("lint")
+
+      lint.linters_by_ft = {
+        lua = { "luacheck", },
+        cpp = { "cpplint", },
+        python = { "pylint", },
+      }
+    end
+  }
+
 }
 
 return plugins

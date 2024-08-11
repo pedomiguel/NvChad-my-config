@@ -89,10 +89,18 @@ autocmd("VimEnter", {
 
     if directory then
       vim.cmd.cd(data.file)
-      vim.cmd "Telescope find_files"
+      vim.cmd "NvimTreeFocus"
     end
   end,
-  desc = "Open Telescope Find Files when in a directory",
+  desc = "Open NvimTree when in a directory",
+})
+
+autocmd({ "BufWritePost" }, {
+  pattern = { "python", "cpp" },
+  callback = function()
+    require("lint").try_lint()
+    require("lint").try_lint("cspell")
+  end,
 })
 
 autocmd('BufReadPost', {
@@ -104,6 +112,14 @@ autocmd('BufReadPost', {
     end
   end,
   desc = "Open file at last cursor position"
+})
+
+autocmd("FileType", {
+  pattern = { "c", "cpp", "cu", "py" },
+  callback = function()
+    vim.bo.shiftwidth = 4
+  end,
+  desc = "Set shiftwidth to 4 in clang and python files",
 })
 
 autocmd("FileType", {
