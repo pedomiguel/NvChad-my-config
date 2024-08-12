@@ -6,7 +6,7 @@ local plugins = {
     version = false,
     branch = "main",
     config = function ()
-      require('mini.ai').setup()
+      return require "plugins.configs.miniai"
     end,
   },
 
@@ -14,8 +14,7 @@ local plugins = {
     "ggandor/leap.nvim",
     lazy = false,
     config = function ()
-      local leap = require("leap")
-      leap.opts.case_sensitive = true
+      return require "plugins.configs.leap"
     end,
     dependencies = { "tpope/vim-repeat" },
   },
@@ -39,15 +38,7 @@ local plugins = {
     "preservim/tagbar", -- sudo apt-get install exuberant-ctags
     lazy = false,
     config = function()
-      vim.g.tagbar_width = math.max(30, vim.api.nvim_win_get_width(0) / 5)
-      vim.g.tagbar_show_tag_linenumbers = true
-      vim.g.tagbar_no_status_line = true
-      vim.g.tagbar_autofocus = true
-      vim.g.tagbar_wrap = false
-      vim.g.tagbar_sort = false
-      vim.g.tagbar_iconchars = {'', ''}
-      vim.g.tagbar_map_togglepause = ''
-      vim.api.nvim_set_hl(0, "TagbarHighlight", {bg = "NvimDarkGrey3"})
+      return require "plugins.configs.tagbar"
     end
   },
 
@@ -56,33 +47,7 @@ local plugins = {
     lazy = false,
     opts = {},
     config = function()
-      require("yasl").setup({
-        enable_icons = true,
-        transparent = true,
-        components = {
-          "mode",
-          " ",
-          {
-            events = { "BufEnter", "BufWritePost", "TextChanged", "BufModifiedSet" },
-            update = function ()
-              return vim.bo.modified and '󱇧' or ''
-            end
-          },
-          " ",
-          "%<%t%h%r%w", -- filename
-          " ",
-          "branch",
-          " ",
-          "gitdiff",
-          "%=",
-          "diagnostics",
-          " ",
-          "filetype",
-          " ",
-          "%-8.(%l:%c%V%) %P", -- location, and progress
-          " ",
-        },
-      })
+      return require "plugins.configs.yasl"
     end
   },
 
