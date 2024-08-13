@@ -18,6 +18,9 @@ M.general = {
     ["zj"] = { "o<Esc>k", "Add blank line below" },
     ["zk"] = { "O<Esc>j", "Add blank line above" },
 
+    -- break the line
+    ["gj"] = { "i<CR><Esc>k$", "Break the line"},
+
     -- switch between windows
     ["<C-h>"] = { "<C-w>h", "Window left" },
     ["<C-l>"] = { "<C-w>l", "Window right" },

@@ -8,5 +8,6 @@ require("mini.ai").setup({
     }, {}),
     f = miniai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }, {}),
     c = miniai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }, {}),
-  }
+  },
+  n_lines = 40,
 })

@@ -14,8 +14,7 @@ opt.showmode = false
 
 opt.wrap = true
 
-opt.clipboard = "unnamedplus"
-opt.cursorline = false
+opt.cursorline = true
 opt.guicursor = "a:blinkon100"
 
 -- Indenting
@@ -24,6 +23,7 @@ opt.shiftwidth = 2
 opt.smartindent = true
 opt.tabstop = 2
 opt.softtabstop = 2
+opt.autoindent = true
 
 opt.fillchars = { eob = "¬" }
 opt.ignorecase = true

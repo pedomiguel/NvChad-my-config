@@ -5,7 +5,7 @@ local options = {
   },
   disable_netrw = true,
   hijack_netrw = true,
-  hijack_cursor = true,
+  hijack_cursor = false,
   sync_root_with_cwd = true,
   update_focused_file = {
     enable = false,
@@ -17,7 +17,7 @@ local options = {
     width = 30,
     preserve_window_proportions = true,
     centralize_selection = true,
-    cursorline = false,
+    cursorline = true,
   },
   git = {
     enable = false,

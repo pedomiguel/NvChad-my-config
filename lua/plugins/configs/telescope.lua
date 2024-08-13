@@ -65,6 +65,12 @@ local options = {
     },
   },
 
+  pickers = {
+    oldfiles = {
+      cwd_only = true,
+    },
+  },
+
   extensions_list = { "themes", "terms", "fzf" },
   extensions = {
     fzf = {

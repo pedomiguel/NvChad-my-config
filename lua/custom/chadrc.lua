@@ -5,6 +5,12 @@ M.ui = {
   theme = 'rosepine',
   transparency = false,
 
+  hl_override = {
+    CursorLine = {
+      bg = "#1f1d2d",
+    },
+  },
+
   statusline = {
     enabled = false,
     theme = "minimal",
