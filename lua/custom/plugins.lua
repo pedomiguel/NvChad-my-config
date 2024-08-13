@@ -1,6 +1,14 @@
 local plugins = {
 
   {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    lazy = false,
+    init = function()
+      require("lazy.core.loader").disable_rtp_plugin "nvim-treesitter-textobjects"
+    end,
+  },
+
+  {
     'echasnovski/mini.ai',
     lazy = false,
     version = false,
@@ -8,6 +16,7 @@ local plugins = {
     config = function ()
       return require "plugins.configs.miniai"
     end,
+    dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
   },
 
   {
