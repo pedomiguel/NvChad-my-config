@@ -9,6 +9,9 @@ M.ui = {
     CursorLine = {
       bg = "#1f1d2d",
     },
+    Visual = {
+      bg = "#3a2d5a",
+    },
   },
 
   statusline = {
