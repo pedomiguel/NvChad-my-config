@@ -15,7 +15,7 @@ opt.showmode = false
 opt.wrap = true
 
 opt.cursorline = true
-opt.guicursor = "a:blinkon100"
+opt.guicursor = "a:block-blinkon100"
 
 -- Indenting
 opt.expandtab = true
