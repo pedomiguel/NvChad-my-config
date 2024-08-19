@@ -9,4 +9,5 @@ g.tagbar_wrap = false
 g.tagbar_sort = false
 g.tagbar_iconchars = {'', ''}
 g.tagbar_map_togglepause = ''
+g.tagbar_map_preview = "<Tab>"
 vim.api.nvim_set_hl(0, "TagbarHighlight", {bg = "NvimDarkGrey3"})
