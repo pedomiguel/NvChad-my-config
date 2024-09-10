@@ -6,9 +6,7 @@ local options = {
     "clangd",
 
     -- Linters
-    -- "luacheck", -- luarocks must be installed
-    "cpplint",
-    "pylint",
+    "mypy",
   },
 
   PATH = "skip",

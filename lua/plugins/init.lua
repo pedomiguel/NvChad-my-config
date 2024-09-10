@@ -125,6 +125,31 @@ local default_plugins = {
   },
 
   {
+    "mfussenegger/nvim-lint",
+    event = {
+      "BufReadPre",
+      "BufNewFile",
+    },
+    config = function ()
+      require "plugins.configs.lint"
+    end
+  },
+
+  {
+    "rshkarin/mason-nvim-lint",
+    config = function ()
+      require("mason-nvim-lint").setup()
+    end
+  },
+
+  {
+    "williamboman/mason-lspconfig.nvim",
+    config = function ()
+      require("mason-lspconfig").setup()
+    end
+  },
+
+  {
     "neovim/nvim-lspconfig",
     init = function()
       require("core.utils").lazy_load "nvim-lspconfig"

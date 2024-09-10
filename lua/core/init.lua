@@ -53,6 +53,8 @@ opt.updatetime = 250
 -- when cursor reaches end/beginning of line
 opt.whichwrap:append "<>[]hl"
 
+opt.iskeyword:remove("_")
+
 g.mapleader = " "
 
 -- disable some default providers
@@ -64,8 +66,16 @@ end
 local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
 vim.env.PATH = vim.fn.stdpath "data" .. "/mason/bin" .. (is_windows and ";" or ":") .. vim.env.PATH
 
--------------------------------------- autocmds ------------------------------------------
 local api = vim.api
+
+-------------------------------------- aliases  ------------------------------------------
+local alias = api.nvim_command
+
+alias ('command! Q wqa')
+alias('command! BufferPath echo expand("%:p")')
+alias('command! HighlightAll normal! ggVG')
+
+-------------------------------------- autocmds ------------------------------------------
 local autocmd = api.nvim_create_autocmd
 
 autocmd("TextYankPost", {
@@ -96,11 +106,10 @@ autocmd("VimEnter", {
   desc = "Open NvimTree when in a directory",
 })
 
-autocmd({ "BufWritePost" }, {
-  pattern = { "python", "cpp" },
+autocmd({ "BufWritePost", "BufEnter", "InsertLeave" }, {
+  pattern = '*',
   callback = function()
     require("lint").try_lint()
-    require("lint").try_lint("cspell")
   end,
 })
 

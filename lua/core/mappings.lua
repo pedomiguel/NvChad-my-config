@@ -238,6 +238,17 @@ M.lspconfig = {
   },
 }
 
+M.lint = {
+  n = {
+    ["<leader>ll"] = {
+      function ()
+        require('lint').try_lint()
+      end,
+      "Try Lint",
+    },
+  },
+}
+
 M.nvimtree = {
   plugin = true,
 
