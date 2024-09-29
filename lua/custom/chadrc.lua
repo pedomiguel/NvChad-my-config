@@ -2,8 +2,8 @@
 local M = {}
 
 M.ui = {
-  theme = 'rosepine',
-  transparency = false,
+  theme = 'catppuccin',
+  transparency = true,
 
   hl_override = {
     CursorLine = {

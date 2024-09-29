@@ -138,7 +138,7 @@ local default_plugins = {
   {
     "rshkarin/mason-nvim-lint",
     config = function ()
-      require("mason-nvim-lint").setup()
+      require("configs.mason-lint")
     end
   },
 

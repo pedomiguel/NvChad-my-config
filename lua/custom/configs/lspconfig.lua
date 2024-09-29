@@ -17,5 +17,15 @@ lspconfig.clangd.setup {
 lspconfig.pyright.setup {
   on_attach = on_attach,
   capabilities = capabilities,
+  settings = {
+    python = {
+      analysis = {
+        typeCheckingMode = "off", -- Leave this function for mypy
+        reportUnusedVariable = true,
+        reportUnusedImport = true,
+        reportImportCycles = true,
+      },
+    },
+  },
   filetypes = { "python" },
 }

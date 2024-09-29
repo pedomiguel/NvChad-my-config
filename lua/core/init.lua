@@ -55,7 +55,7 @@ opt.whichwrap:append "<>[]hl"
 
 opt.iskeyword:remove("_")
 
-g.mapleader = " "
+g.mapleader = " " -- Space key
 
 -- disable some default providers
 for _, provider in ipairs { "node", "perl", "python3", "ruby" } do
@@ -71,7 +71,7 @@ local api = vim.api
 -------------------------------------- aliases  ------------------------------------------
 local alias = api.nvim_command
 
-alias ('command! Q wqa')
+alias('command! Q wqa')
 alias('command! BufferPath echo expand("%:p")')
 alias('command! HighlightAll normal! ggVG')
 
@@ -83,7 +83,7 @@ autocmd("TextYankPost", {
   callback = function ()
     vim.highlight.on_yank { timeout = 100 }
   end,
-  desc = "Highlight yanked text"
+  desc = "Highlight yanked text",
 })
 
 autocmd('BufWritePre', {
@@ -91,7 +91,7 @@ autocmd('BufWritePre', {
   callback = function()
     vim.cmd([[%s/\s\+$//e]])
   end,
-  desc = "Trim trailing whitespace on save"
+  desc = "Trim trailing whitespace on save",
 })
 
 autocmd("VimEnter", {
@@ -111,6 +111,7 @@ autocmd({ "BufWritePost", "BufEnter", "InsertLeave" }, {
   callback = function()
     require("lint").try_lint()
   end,
+  desc = "Lint command in python files to trigger mypy",
 })
 
 autocmd('BufReadPost', {
@@ -121,7 +122,7 @@ autocmd('BufReadPost', {
       vim.cmd('normal! g`"')
     end
   end,
-  desc = "Open file at last cursor position"
+  desc = "Open file at last cursor position",
 })
 
 autocmd("FileType", {
@@ -137,7 +138,7 @@ autocmd("FileType", {
   callback = function()
     vim.opt_local.buflisted = false
   end,
-  desc = "Dont list quickfix buffers"
+  desc = "Dont list quickfix buffers",
 })
 
 autocmd("BufWritePost", {

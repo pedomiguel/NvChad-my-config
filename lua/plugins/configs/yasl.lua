@@ -1,6 +1,6 @@
 require("yasl").setup({
   enable_icons = true,
-  transparent = false,
+  transparent = true,
   components = {
     "mode",
     " ",
