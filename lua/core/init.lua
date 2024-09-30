@@ -111,7 +111,7 @@ autocmd({ "BufWritePost", "BufEnter", "InsertLeave" }, {
   callback = function()
     require("lint").try_lint()
   end,
-  desc = "Lint command in python files to trigger mypy",
+  desc = "Trigger linter",
 })
 
 autocmd('BufReadPost', {
