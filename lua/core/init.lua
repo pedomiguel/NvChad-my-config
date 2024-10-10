@@ -106,7 +106,7 @@ autocmd("VimEnter", {
   desc = "Open NvimTree when in a directory",
 })
 
-autocmd({ "BufWritePost", "BufEnter", "InsertLeave" }, {
+autocmd({ "InsertLeave", "BufEnter", "BufWritePost", }, {
   pattern = '*',
   callback = function()
     require("lint").try_lint()
