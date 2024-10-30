@@ -3,11 +3,11 @@ local M = {}
 
 M.ui = {
   theme = 'catppuccin',
-  transparency = true,
+  transparency = false,
 
   hl_override = {
     CursorLine = {
-      bg = "#1f1d2d",
+      bg = "#1f152d",
     },
     Visual = {
       bg = "#3a2d5a",
@@ -39,6 +39,7 @@ M.ui = {
       { " Mappings", "Spc c h", "NvCheatsheet" },
       { "󰒲 Lazy", "Command Line", "Lazy" },
       { "󰣪 Mason", "Command Line", "Mason" },
+      { "󰿅 Exit", "Command Line", "qa!"},
     },
   },
 }

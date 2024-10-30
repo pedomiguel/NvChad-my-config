@@ -30,10 +30,28 @@ vim.api.nvim_create_autocmd("InsertLeave", {
   end,
 })
 
+-- Custom snippets
+
 ls.add_snippets("python", {
   s("main", {
     t('if __name__ == "__main__":'),
     t({"", "\t"}),
     i(1, "pass")
-  })
+  }),
+
+  s("strict", {
+    t('# pyright: strict'),
+  }),
+
+  s("X_train", {
+    t('X_train, X_test, y_train, y_test = train_test_split('),
+    i(1, "X"),
+    t(", "),
+    i(2, "y"),
+    t(", "),
+    t("test_size="),
+    i(3, "0.3"),
+    t(")"),
+  }),
+
 })

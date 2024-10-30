@@ -180,21 +180,21 @@ M.lspconfig = {
 
     ["<leader>lf"] = {
       function()
-        vim.diagnostic.open_float { border = nil }
+        vim.diagnostic.open_float { border = nil , source = true, }
       end,
       "Floating diagnostic",
     },
 
     ["[d"] = {
       function()
-        vim.diagnostic.goto_prev { float = {nil}}
+        vim.diagnostic.goto_prev { float = false }
       end,
       "Goto prev",
     },
 
     ["]d"] = {
       function()
-        vim.diagnostic.goto_next { float = {nil} }
+        vim.diagnostic.goto_next { float = false }
       end,
       "Goto next",
     },
