@@ -7,10 +7,10 @@ M.ui = {
 
   hl_override = {
     CursorLine = {
-      bg = "#1f152d",
+      bg = "#333344",
     },
     Visual = {
-      bg = "#3a2d5a",
+      bg = "#3a3d5a",
     },
   },
 
@@ -39,7 +39,7 @@ M.ui = {
       { " Mappings", "Spc c h", "NvCheatsheet" },
       { "󰒲 Lazy", "Command Line", "Lazy" },
       { "󰣪 Mason", "Command Line", "Mason" },
-      { "󰿅 Exit", "Command Line", "qa!"},
+      { "󰿅 Exit", "Command Line", "Q"},
     },
   },
 }
