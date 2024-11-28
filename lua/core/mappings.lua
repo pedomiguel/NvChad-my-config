@@ -9,6 +9,9 @@ M.general = {
     ["<C-l>"] = { "<Right>", "Move right" },
     ["<C-j>"] = { "<Down>", "Move down" },
     ["<C-k>"] = { "<Up>", "Move up" },
+
+    -- return to normal mode
+    ["jk"] = { "<Esc>", "Return to normal mode" }
   },
 
   n = {

@@ -12,6 +12,9 @@ M.ui = {
     Visual = {
       bg = "#3a3d5a",
     },
+    StatusLine = {
+      bg = "#140D20"
+    }
   },
 
   statusline = {

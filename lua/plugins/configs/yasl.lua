@@ -1,6 +1,6 @@
 require("yasl").setup({
   enable_icons = true,
-  transparent = true,
+  transparent = false,
   components = {
     "mode",
     " ",
@@ -22,7 +22,7 @@ require("yasl").setup({
     "filetype",
     {
       events = { "BufEnter" },
-      update = function()
+      update = function ()
         local linters = require("lint").get_running()
         if #linters == 0 then
           return "󰦕"
@@ -31,7 +31,7 @@ require("yasl").setup({
       end
     },
     " ",
-    "%-8.(%l:%c%V%) %P", -- location, and progress
+    "%-8.(%l:%L:%c%V%) %P", -- location, and progress
     " ",
   },
 })
