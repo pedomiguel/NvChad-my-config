@@ -2,6 +2,7 @@ local ls = require "luasnip"
 local s = ls.snippet
 local t = ls.text_node
 local i = ls.insert_node
+local f = ls.function_node
 
 local vscode_snip = require("luasnip.loaders.from_vscode")
 local from_snipmate_snip = require("luasnip.loaders.from_snipmate")
@@ -53,5 +54,11 @@ ls.add_snippets("python", {
     i(3, "0.3"),
     t(")"),
   }),
+
+  s("ic", {
+    t('ic ('),
+    i(1, "content"),
+    t(")"),
+  })
 
 })

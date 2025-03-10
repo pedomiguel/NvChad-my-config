@@ -31,6 +31,17 @@ M.ui = {
 
   nvdash = {
     load_on_startup = true,
+
+    header = {
+        "   ▄▄         ▄ ▄▄▄▄▄▄▄ ",
+        " ▄▀███▄     ▄██ █████▀  ",
+        " ██▄▀███▄   ███         ",
+        " ███  ▀███▄ ███         ",
+        " ███    ▀██ ███         ",
+        " ███      ▀ ███         ",
+        " ▀██ █████▄▀█▀▄██████▄  ",
+        "   ▀ ▀▀▀▀▀▀▀ ▀▀▀▀▀▀▀▀▀▀ ",
+    },
     buttons = {
       { " Nvimtree", "Spc e  ", "NvimTreeToggle" },
       { " Find File", "Spc f f", "Telescope find_files" },

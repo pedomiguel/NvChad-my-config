@@ -20,12 +20,23 @@ lspconfig.pyright.setup {
   settings = {
     python = {
       analysis = {
-        typeCheckingMode = "off", -- Leave this function for mypy
+        typeCheckingMode = "standard", -- Delegated to mypy
         reportUnusedVariable = true,
         reportUnusedImport = true,
         reportImportCycles = true,
+        autoImportCompletions = false,
       },
     },
   },
   filetypes = { "python" },
 }
+
+lspconfig.ts_ls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
+lspconfig['vhdl_ls'].setup({
+  on_attach = on_attach,
+  capabilities = capabilities
+})

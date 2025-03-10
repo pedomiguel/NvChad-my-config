@@ -106,14 +106,6 @@ autocmd("VimEnter", {
   desc = "Open NvimTree when in a directory",
 })
 
-autocmd({ "InsertLeave", "BufEnter", "BufWritePost", }, {
-  pattern = '*',
-  callback = function()
-    require("lint").try_lint()
-  end,
-  desc = "Trigger linter",
-})
-
 autocmd('BufReadPost', {
   pattern = '*',
   callback = function()
@@ -126,7 +118,7 @@ autocmd('BufReadPost', {
 })
 
 autocmd("FileType", {
-  pattern = { "c", "cpp", "cu", "py" },
+  pattern = { "py", },
   callback = function()
     vim.bo.shiftwidth = 4
   end,

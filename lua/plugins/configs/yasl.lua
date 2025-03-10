@@ -31,7 +31,7 @@ require("yasl").setup({
       end
     },
     " ",
-    "%-8.(%l:%L:%c%V%) %P", -- location, and progress
+    "%-8.(%l:%L;%c%V%) %P", -- location, and progress
     " ",
   },
 })

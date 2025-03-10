@@ -126,10 +126,7 @@ local default_plugins = {
 
   {
     "mfussenegger/nvim-lint",
-    event = {
-      "BufReadPre",
-      "BufNewFile",
-    },
+    lazy = true,
     config = function ()
       require "plugins.configs.lint"
     end

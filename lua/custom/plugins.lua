@@ -20,6 +20,15 @@ local plugins = {
   },
 
   {
+    'echasnovski/mini.surround',
+    lazy = false,
+    version = false,
+    config = function ()
+      return require "plugins.configs.minisurround"
+    end
+  },
+
+  {
     "ggandor/leap.nvim",
     lazy = false,
     config = function ()
@@ -54,6 +63,7 @@ local plugins = {
   {
     "brianaung/yasl.nvim",
     lazy = false,
+    enabled = true,
     opts = {},
     config = function()
       return require "plugins.configs.yasl"
