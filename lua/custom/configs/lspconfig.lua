@@ -20,11 +20,18 @@ lspconfig.pyright.setup {
   settings = {
     python = {
       analysis = {
-        typeCheckingMode = "standard", -- Delegated to mypy
-        reportUnusedVariable = true,
-        reportUnusedImport = true,
-        reportImportCycles = true,
-        autoImportCompletions = false,
+        diagnosticMode = "workspace",
+        autoSearchPaths = true,
+        useLibraryCodeForTypes = true,
+
+        typeCheckingMode = "standard",
+        diagnosticSeverityOverrides = {
+          reportMissingImports = "warning",
+          reportUnusedVariable = false,
+          reportUnusedImport = false,
+          reportUnknownParameterType = true,
+          reportImportCycles = true,
+        },
       },
     },
   },
