@@ -38,6 +38,8 @@ M.general = {
 
     -- Copy all
     ["<C-c>"] = { "<cmd> %y+ <CR>", "Copy whole file" },
+    --Highlight all
+    ["<leader>a"] = { "<cmd> HighlightAll <CR>", "Highlight whole file" },
 
     ["gi"] = { "ggO", "Insert in the beggining of the file" },
     ["ga"] = { "Go", "Insert in the end of the file" },
@@ -237,17 +239,6 @@ M.lspconfig = {
         vim.lsp.buf.code_action()
       end,
       "LSP code action",
-    },
-  },
-}
-
-M.lint = {
-  n = {
-    ["<leader>ll"] = {
-      function ()
-        require('lint').try_lint()
-      end,
-      "Try Lint",
     },
   },
 }
