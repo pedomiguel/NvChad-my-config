@@ -125,14 +125,6 @@ local default_plugins = {
   },
 
   {
-    "mfussenegger/nvim-lint",
-    lazy = true,
-    config = function ()
-      require "plugins.configs.lint"
-    end
-  },
-
-  {
     "rshkarin/mason-nvim-lint",
     config = function ()
       require("configs.mason-lint")

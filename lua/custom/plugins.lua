@@ -20,15 +20,6 @@ local plugins = {
   },
 
   {
-    'echasnovski/mini.surround',
-    lazy = false,
-    version = false,
-    config = function ()
-      return require "plugins.configs.minisurround"
-    end
-  },
-
-  {
     "ggandor/leap.nvim",
     lazy = false,
     config = function ()
@@ -43,8 +34,16 @@ local plugins = {
   },
 
   {
-    "tpope/vim-surround",
-    lazy = false,
+    "kylechui/nvim-surround",
+    version = "*",
+    event = "VeryLazy",
+    opts = {},
+  },
+
+  {
+    "kevinhwang91/nvim-bqf",
+    event = "VeryLazy",
+    opts = {},
   },
 
   {
