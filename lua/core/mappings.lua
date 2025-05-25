@@ -41,6 +41,10 @@ M.general = {
     --Highlight all
     ["<leader>a"] = { "<cmd> HighlightAll <CR>", "Highlight whole file" },
 
+    -- Navigation
+    ["<C-d>"] = { "<C-d>zz" ,"Scroll down half screen" },
+    ["<C-u>"] = { "<C-u>zz", "Scroll up half screen" },
+
     ["gi"] = { "ggO", "Insert in the beggining of the file" },
     ["ga"] = { "Go", "Insert in the end of the file" },
 
@@ -367,6 +371,13 @@ M.gitsigns = {
         require("gitsigns").preview_hunk()
       end,
       "Preview hunk",
+    },
+
+    ["<leader>sh"] = {
+      function ()
+        require("gitsigns").stage_hunk()
+      end,
+      "Stage hunk",
     },
 
     ["<leader>gb"] = {

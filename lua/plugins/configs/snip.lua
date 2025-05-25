@@ -36,8 +36,19 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 ls.add_snippets("python", {
   s("main", {
     t('if __name__ == "__main__":'),
-    t({"", "\t"}),
+    t({ "", "\t" }),
     i(1, "pass")
+  }),
+
+  s("def", {
+    t("def "),
+    i(1, "fname"),
+    t("("),
+    i(2, ""),
+    t(") -> "),
+    i(3, "None"),
+    t({ ":", "\t" }),
+    i(4, "pass"),
   }),
 
   s("strict", {
@@ -52,6 +63,8 @@ ls.add_snippets("python", {
     t(", "),
     t("test_size="),
     i(3, "0.3"),
+    t(", random_state="),
+    i(4, "42"),
     t(")"),
   }),
 
