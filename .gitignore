@@ -6,4 +6,5 @@ coc-settings.json
 .luarc.json
 lazy-lock.json
 after
+tags
 **/.DS_Store
