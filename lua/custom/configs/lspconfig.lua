@@ -4,6 +4,7 @@ local on_attach = base.on_attach
 local capabilities = base.capabilities
 
 local lspconfig = require("lspconfig")
+local util = require "lspconfig/util"
 
 lspconfig.clangd.setup {
   on_attach = function(client, bufnr)
@@ -47,3 +48,29 @@ lspconfig['vhdl_ls'].setup({
   on_attach = on_attach,
   capabilities = capabilities
 })
+
+lspconfig.gopls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = {"gopls"},
+  filetypes = { "go", "gomod", "gowork", "gotmpl" },
+  root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+  settings = {
+    gopls = {
+      staticcheck = true,
+      completeUnimported = true,
+      usePlaceholders = true,
+      analyses = {
+        unusedparams = true,
+      }
+    },
+  },
+}
+
+lspconfig.java_language_server.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = { "java-language-server" }, -- should be in PATH via Mason
+  filetypes = { "java" },
+  root_dir = util.root_pattern(".git", "build.gradle", "pom.xml"),
+}
