@@ -166,13 +166,6 @@ M.lspconfig = {
       "LSP definition type",
     },
 
-    ["<leader>ra"] = {
-      function()
-        require("nvchad.renamer").open()
-      end,
-      "LSP rename",
-    },
-
     ["<leader>ca"] = {
       function()
         vim.lsp.buf.code_action()
@@ -207,34 +200,6 @@ M.lspconfig = {
       end,
       "Goto next",
     },
-
-    ["<leader>q"] = {
-      function()
-        vim.diagnostic.setloclist()
-      end,
-      "Diagnostic setloclist",
-    },
-
-    ["<leader>wa"] = {
-      function()
-        vim.lsp.buf.add_workspace_folder()
-      end,
-      "Add workspace folder",
-    },
-
-    ["<leader>wr"] = {
-      function()
-        vim.lsp.buf.remove_workspace_folder()
-      end,
-      "Remove workspace folder",
-    },
-
-    ["<leader>wl"] = {
-      function()
-        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-      end,
-      "List workspace folders",
-    },
   },
 
   v = {
@@ -249,10 +214,6 @@ M.lspconfig = {
 
 M.nvimtree = {
   plugin = true,
-
-  n = {
-    ["<leader>e"] = { "<cmd> NvimTreeToggle <CR>", "Toggle Nvimtree" },
-  },
 }
 
 M.telescope = {
