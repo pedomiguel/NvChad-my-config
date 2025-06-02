@@ -15,41 +15,41 @@ lspconfig.clangd.setup {
   filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
 }
 
-lspconfig.pyright.setup {
+lspconfig.pyright.setup ({
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
     python = {
       analysis = {
+        typeCheckingMode = "standard",
+        typeCheckingRules = {
+          reportMissingImports = "warning",
+          reportUnusedVariable = "none",
+          reportUnusedImport = "none",
+          reportUnknownParameterType = "error",
+          reportImportCycles = "error",
+          reportReturnType = "warning",
+        },
         diagnosticMode = "workspace",
         autoSearchPaths = true,
         useLibraryCodeForTypes = true,
-
-        typeCheckingMode = "standard",
-        diagnosticSeverityOverrides = {
-          reportMissingImports = "warning",
-          reportUnusedVariable = false,
-          reportUnusedImport = false,
-          reportUnknownParameterType = true,
-          reportImportCycles = true,
-        },
       },
     },
   },
   filetypes = { "python" },
-}
+})
 
-lspconfig.ts_ls.setup {
+lspconfig.ts_ls.setup ({
   on_attach = on_attach,
   capabilities = capabilities,
-}
+})
 
 lspconfig['vhdl_ls'].setup({
   on_attach = on_attach,
   capabilities = capabilities
 })
 
-lspconfig.gopls.setup {
+lspconfig.gopls.setup ({
   on_attach = on_attach,
   capabilities = capabilities,
   cmd = {"gopls"},
@@ -62,15 +62,23 @@ lspconfig.gopls.setup {
       usePlaceholders = true,
       analyses = {
         unusedparams = true,
+        unreachble = true,
+        niless = true,
+        shadow = true,
+      },
+      hints = {
+        rangevariableTypes = true,
+        parameterNames = true,
+        functiontypeparameters = true,
       }
     },
   },
-}
+})
 
-lspconfig.java_language_server.setup {
+lspconfig.java_language_server.setup ({
   on_attach = on_attach,
   capabilities = capabilities,
   cmd = { "java-language-server" }, -- should be in PATH via Mason
   filetypes = { "java" },
   root_dir = util.root_pattern(".git", "build.gradle", "pom.xml"),
-}
+})
