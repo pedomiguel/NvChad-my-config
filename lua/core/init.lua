@@ -53,8 +53,6 @@ opt.updatetime = 250
 -- when cursor reaches end/beginning of line
 opt.whichwrap:append "<>[]hl"
 
-opt.iskeyword:remove("_")
-
 g.mapleader = " " -- Space key
 
 -- disable some default providers
@@ -100,7 +98,7 @@ autocmd("VimEnter", {
 
     if directory then
       vim.cmd.cd(data.file)
-      vim.cmd "NvimTreeFocus"
+      vim.cmd "Telescope file_browser"
     end
   end,
   desc = "Open NvimTree when in a directory",

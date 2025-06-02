@@ -20,7 +20,7 @@ local theme_colors = {
 }
 
 M.ui = {
-  theme = "gruvbox",
+  theme = "tokyonight",
   transparency = false,
 }
 
@@ -57,7 +57,7 @@ M.ui.nvdash = {
     "   ▀ ▀▀▀▀▀▀▀ ▀▀▀▀▀▀▀▀▀▀ ",
   },
   buttons = {
-    { " Nvimtree", "Spc e  ", "NvimTreeToggle" },
+    { " File Browser", "Spc f t", "Telescope file_browser" },
     { " Find File", "Spc f f", "Telescope find_files" },
     { "󰈚 Recent Files", "Spc f o", "Telescope oldfiles" },
     { " Git Status", "Spc g t", "Telescope git_status" },

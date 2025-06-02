@@ -4,7 +4,7 @@ local options = {
     exclude = { vim.fn.stdpath "config" .. "/lua/custom" },
   },
   disable_netrw = true,
-  hijack_netrw = true,
+  hijack_netrw = false,
   hijack_cursor = false,
   sync_root_with_cwd = true,
   update_focused_file = {

@@ -1,4 +1,7 @@
+local telescope = require("telescope")
 local actions = require("telescope.actions")
+local fb_actions = require "telescope._extensions.file_browser.actions"
+local lga_actions = require("telescope-live-grep-args.actions")
 
 local function close_buffer(prompt_bufrn)
   local sucess, err = pcall(actions.delete_buffer, prompt_bufrn)
@@ -71,7 +74,7 @@ local options = {
     },
   },
 
-  extensions_list = { "themes", "terms", "fzf", "live_grep_args" },
+  extensions_list = { "themes", "terms", "fzf", "live_grep_args", "file_browser" },
   extensions = {
     fzf = {
       fuzzy = true,
@@ -79,7 +82,25 @@ local options = {
       override_file_sorter = true,
       case_mode = "smart_case",
     },
+    live_grep_args = {},
+    file_browser = {
+      dir_icon = "",
+      path = "%:p:h",
+      select_buffer = true,
+      mappings = {
+        n = {
+          ["<bs>"] = fb_actions.goto_parent_dir, -- g is the default
+        },
+        i = {
+          ["<bs>"] = false, -- Unbinding backspace
+        }
+      }
+    }
   },
 }
+
+for _, extension in ipairs(options.extensions_list) do
+  telescope.load_extension(extension)
+end
 
 return options
