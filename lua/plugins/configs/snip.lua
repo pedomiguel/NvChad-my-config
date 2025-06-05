@@ -72,6 +72,24 @@ ls.add_snippets("python", {
     t('ic ('),
     i(1, "content"),
     t(")"),
-  })
+  }),
+
+  s("dotenv", {
+    t({
+      'import os',
+      'from dotenv import load_dotenv',
+      '',
+      'load_dotenv()',
+    })
+  }),
+
+  s("getenv", {
+    i(1, "VAR_NAME"),
+    t(" = os.getenv(\""),
+    f(function(args)
+      return args[1][1]
+    end, {1}),
+    t("\")")
+  }),
 
 })
