@@ -1,5 +1,6 @@
 local opt = vim.opt
 local g = vim.g
+local wo = vim.wo
 local config = require("core.utils").load_config()
 
 -------------------------------------- globals -----------------------------------------
@@ -54,6 +55,12 @@ opt.updatetime = 250
 opt.whichwrap:append "<>[]hl"
 
 g.mapleader = " " -- Space key
+
+-- folding
+wo.foldmethod = 'expr'
+wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+wo.foldlevel = 99 -- Keep folders open in start
+wo.foldenable = true
 
 -- disable some default providers
 for _, provider in ipairs { "node", "perl", "python3", "ruby" } do

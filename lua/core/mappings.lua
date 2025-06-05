@@ -79,6 +79,14 @@ M.general = {
       end,
       "LSP formatting",
     },
+
+    -- folding
+    ["<leader>fc"] = {
+      function()
+        vim.wo.foldcolumn = (vim.wo.foldcolumn == "0") and "1" or "0"
+      end,
+      "Toggle fold column"
+    },
   },
 
   v = {
