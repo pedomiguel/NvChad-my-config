@@ -90,6 +90,7 @@ local options = {
       mappings = {
         n = {
           ["<bs>"] = fb_actions.goto_parent_dir, -- g is the default
+          ["e"] = false,
         },
         i = {
           ["<bs>"] = false, -- Unbinding backspace
