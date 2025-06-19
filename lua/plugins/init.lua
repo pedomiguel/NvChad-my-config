@@ -45,22 +45,6 @@ local default_plugins = {
   },
 
   {
-    "lukas-reineke/indent-blankline.nvim",
-    version = "2.20.7",
-    init = function()
-      require("core.utils").lazy_load "indent-blankline.nvim"
-    end,
-    opts = function()
-      return require("plugins.configs.others").blankline
-    end,
-    config = function(_, opts)
-      require("core.utils").load_mappings "blankline"
-      dofile(vim.g.base46_cache .. "blankline")
-      require("indent_blankline").setup(opts)
-    end,
-  },
-
-  {
     "nvim-treesitter/nvim-treesitter",
     init = function()
       require("core.utils").lazy_load "nvim-treesitter"
@@ -96,7 +80,7 @@ local default_plugins = {
       })
     end,
     opts = function()
-      return require("plugins.configs.others").gitsigns
+      return require("plugins.configs.others")
     end,
     config = function(_, opts)
       dofile(vim.g.base46_cache .. "git")
@@ -122,13 +106,6 @@ local default_plugins = {
 
       vim.g.mason_binaries_list = opts.ensure_installed
     end,
-  },
-
-  {
-    "rshkarin/mason-nvim-lint",
-    config = function ()
-      require("configs.mason-lint")
-    end
   },
 
   {
@@ -272,6 +249,7 @@ local default_plugins = {
       require("which-key").setup(opts)
     end,
   },
+
 }
 
 local config = require("core.utils").load_config()

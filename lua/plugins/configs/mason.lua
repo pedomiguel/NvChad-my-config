@@ -4,9 +4,6 @@ local options = {
     "lua-language-server",
     "pyright", -- node >= 18.0
     "clangd",
-
-    -- Linters
-    "mypy",
   },
 
   PATH = "skip",
