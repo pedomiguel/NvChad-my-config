@@ -6,14 +6,14 @@ local capabilities = base.capabilities
 local lspconfig = require("lspconfig")
 local util = require "lspconfig/util"
 
-lspconfig.clangd.setup {
+lspconfig.clangd.setup ({
   on_attach = function(client, bufnr)
     client.server_capabilities.signatureHelpProvider = false
     on_attach(client, bufnr)
   end,
   capabilities = capabilities,
   filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
-}
+})
 
 lspconfig.pyright.setup ({
   on_attach = on_attach,
@@ -22,13 +22,14 @@ lspconfig.pyright.setup ({
     python = {
       analysis = {
         typeCheckingMode = "standard",
-        typeCheckingRules = {
-          reportMissingImports = "warning",
-          reportUnusedVariable = "none",
-          reportUnusedImport = "none",
-          reportUnknownParameterType = "error",
-          reportImportCycles = "error",
-          reportReturnType = "warning",
+        diagnosticSeverityOverrides = {
+          reportMissingImports = true,
+          reportUnusedVariable = false,
+          reportUnusedImport = false,
+          reportUnknownParameterType = true,
+          reportImportCycles = true,
+          reportMissingTypeArgument = true,
+          reportReturnType = true,
         },
         diagnosticMode = "workspace",
         autoSearchPaths = true,
