@@ -28,11 +28,18 @@ M.general = {
     -- break the line
     ["gj"] = { "i<CR><Esc>k$", "Break the line" },
 
-    -- switch between windows
+    --[[ -- switch between windows
     ["<C-h>"] = { "<C-w>h", "Window left" },
     ["<C-l>"] = { "<C-w>l", "Window right" },
     ["<C-j>"] = { "<C-w>j", "Window down" },
-    ["<C-k>"] = { "<C-w>k", "Window up" },
+    ["<C-k>"] = { "<C-w>k", "Window up" }, ]]
+
+    -- Overring for tmux plugin navigation
+    ["<C-h>"] = { "<cmd> TmuxNavigateLeft <CR>", "Window Left"},
+    ["<C-l>"] = { "<cmd> TmuxNavigateRight <CR>", "Window right" },
+    ["<C-j>"] = { "<cmd> TmuxNavigateDown <CR>", "Window down" },
+    ["<C-k>"] = { "<cmd> TmuxNavigateUp <CR>", "Window up" },
+
 
     -- Resize windows
     ["<C-Up>"] = { "<cmd> resize +2 <CR>", "Decrease vertical window size" },
@@ -347,6 +354,25 @@ M.gitsigns = {
       "Toggle deleted",
     },
   },
+}
+
+M.leap = {
+  n = {
+    ["s"] = { "<Plug>(leap-forward)", "Leap forward" },
+    ["S"] = { "<Plug>(leap-backward)", "Leap backward" },
+    ["gs"] = { "<Plug>(leap-from-window)", "Leap from window" },
+  },
+  o = {
+    ["s"] = { "<Plug>(leap-forward)", "Leap forward" },
+    ["S"] = { "<Plug>(leap-backward)", "Leap backward" },
+    ["gs"] = { "<Plug>(leap-from-window)", "Leap from window" },
+  },
+}
+
+M.tagbar = {
+  n = {
+    ["<leader>tt"] = { "<cmd> TagbarToggle <CR>", "Toggle Tagbar" },
+  }
 }
 
 return M
