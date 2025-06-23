@@ -38,6 +38,11 @@ M.ui.statusline = {
   separator_style = "block",
 }
 
+M.ui.cmp = {
+  style = "atom", -- default/flat_light/flat_dark/atom/atom_colored
+  selected_item_bg = "simple", -- colored / simple
+}
+
 M.ui.tabufline = {
   enabled = false,
 }

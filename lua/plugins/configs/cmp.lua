@@ -62,7 +62,6 @@ local options = {
       auto_open = false,
     },
   },
-
   window = {
     completion = {
       side_padding = (cmp_style ~= "atom" and cmp_style ~= "atom_colored") and 1 or 0,
@@ -134,11 +133,11 @@ local options = {
 
   },
   sources = {
-    { name = "nvim_lsp" },
-    { name = "luasnip" },
-    { name = "buffer" },
-    { name = "path" },
-    { name = "nvim_lua" },
+    { name = "nvim_lsp", max_item_count=10 },
+    { name = "luasnip", max_item_count=3 },
+    { name = "buffer", max_item_count=3 },
+    { name = "path", max_item_count=5 },
+    { name = "nvim_lua", max_item_count=3 },
   },
 }
 
