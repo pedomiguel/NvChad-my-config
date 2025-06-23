@@ -231,10 +231,6 @@ M.lspconfig = {
   },
 }
 
-M.nvimtree = {
-  plugin = true,
-}
-
 M.telescope = {
   plugin = true,
 

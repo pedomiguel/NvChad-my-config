@@ -122,6 +122,7 @@ local plugins = {
     end,
     config = function()
       require "plugins.configs.lspconfig"
+      require "custom.configs.lspconfig"
     end,
   },
 
@@ -191,22 +192,6 @@ local plugins = {
     end,
   },
 
-  -- file managing , picker etc
-  {
-    "nvim-tree/nvim-tree.lua",
-    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-    init = function()
-      require("core.utils").load_mappings "nvimtree"
-    end,
-    opts = function()
-      return require "plugins.configs.nvimtree"
-    end,
-    config = function(_, opts)
-      dofile(vim.g.base46_cache .. "nvimtree")
-      require("nvim-tree").setup(opts)
-    end,
-  },
-
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
@@ -250,15 +235,6 @@ local plugins = {
     end,
   },
 
-
-  {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    lazy = false,
-    init = function()
-      require("lazy.core.loader").disable_rtp_plugin "nvim-treesitter-textobjects"
-    end,
-  },
-
   {
     'echasnovski/mini.ai',
     lazy = false,
@@ -276,12 +252,6 @@ local plugins = {
     config = function ()
       return require "plugins.configs.leap"
     end,
-    dependencies = { "tpope/vim-repeat" },
-  },
-
-  {
-    "tpope/vim-repeat",
-    lazy = false,
   },
 
   {
@@ -318,14 +288,6 @@ local plugins = {
     config = function()
       return require "plugins.configs.yasl"
     end
-  },
-
-  {
-    "neovim/nvim-lspconfig",
-    config = function()
-      require "plugins.configs.lspconfig"
-      require "custom.configs.lspconfig"
-    end,
   },
 
 }
