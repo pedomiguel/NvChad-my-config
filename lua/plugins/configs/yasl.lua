@@ -6,12 +6,17 @@ require("yasl").setup({
     " ",
     {
       events = { "BufEnter", "BufWritePost", "TextChanged", "BufModifiedSet" },
-      update = function ()
+      update = function()
+        local ft = vim.bo.filetype
+        local name = vim.api.nvim_buf_get_name(0)
+        if ft == "TelescopePrompt" or name:match("%[Prompt%]") or name:match("%[Scratch%]") then
+          return ""
+        end
         return vim.bo.modified and '󱇧' or ''
       end
     },
     " ",
-    "%<%t%h%r%w", -- filename
+    "%<%f", -- project_root/filename
     " ",
     "branch",
     " ",

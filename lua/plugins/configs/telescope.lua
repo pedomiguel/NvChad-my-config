@@ -82,7 +82,9 @@ local options = {
       override_file_sorter = true,
       case_mode = "smart_case",
     },
-    live_grep_args = {},
+    live_grep_args = {
+      auto_quoting = false,
+    },
     file_browser = {
       dir_icon = "",
       path = "%:p:h",
