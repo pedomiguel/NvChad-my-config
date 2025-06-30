@@ -281,12 +281,12 @@ local plugins = {
   },
 
   {
-    "brianaung/yasl.nvim",
+    'nvim-lualine/lualine.nvim',
     lazy = false,
     enabled = true,
-    opts = {},
-    config = function()
-      return require "plugins.configs.yasl"
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function ()
+      return require "plugins.configs.lualine"
     end
   },
 
