@@ -50,7 +50,7 @@ M.general = {
     -- Copy all
     ["<C-c>"] = { "<cmd> %y+ <CR>", "Copy whole file" },
     --Highlight all
-    ["<leader>a"] = { "<cmd> HighlightAll <CR>", "Highlight whole file" },
+    ["<leader>ha"] = { "<cmd> HighlightAll <CR>", "Highlight whole file" },
 
     -- Navigation
     ["<C-d>"] = { "<C-d>zz" ,"Scroll down half screen" },
@@ -354,14 +354,10 @@ M.gitsigns = {
 
 M.leap = {
   n = {
-    ["s"] = { "<Plug>(leap-forward)", "Leap forward" },
-    ["S"] = { "<Plug>(leap-backward)", "Leap backward" },
-    ["gs"] = { "<Plug>(leap-from-window)", "Leap from window" },
+    ["s"] = { "<Plug>(leap-anywhere)", "Leap forward" },
   },
   o = {
-    ["s"] = { "<Plug>(leap-forward)", "Leap forward" },
-    ["S"] = { "<Plug>(leap-backward)", "Leap backward" },
-    ["gs"] = { "<Plug>(leap-from-window)", "Leap from window" },
+    ["s"] = { "<Plug>(leap-anywhere)", "Leap forward" },
   },
 }
 
