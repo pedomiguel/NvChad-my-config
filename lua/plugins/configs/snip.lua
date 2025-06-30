@@ -80,8 +80,8 @@ ls.add_snippets("python", {
   s("getenv", {
     i(1, "VAR_NAME"),
     t(" = os.getenv(\""),
-    f(function(args)
-      return args[1][1]
+    f(function (args)
+      return string.upper(args[1][1])
     end, {1}),
     t("\")")
   }),

@@ -134,8 +134,8 @@ local options = {
   },
   sources = {
     { name = "nvim_lsp", max_item_count=10 },
-    { name = "luasnip", max_item_count=3 },
-    { name = "buffer", max_item_count=3 },
+    { name = "luasnip", max_item_count=5 },
+    { name = "buffer", max_item_count=10 },
     { name = "path", max_item_count=5 },
     { name = "nvim_lua", max_item_count=3 },
   },
