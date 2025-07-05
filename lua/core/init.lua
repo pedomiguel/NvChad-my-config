@@ -86,7 +86,7 @@ local autocmd = api.nvim_create_autocmd
 autocmd("TextYankPost", {
   pattern = '*',
   callback = function ()
-    vim.highlight.on_yank { timeout = 100 }
+    vim.hl.on_yank { timeout = 100 }
   end,
   desc = "Highlight yanked text",
 })

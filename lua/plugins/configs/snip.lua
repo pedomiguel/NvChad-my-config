@@ -14,7 +14,7 @@ vscode_snip.lazy_load { paths = vim.g.vscode_snippets_path or "" }
 
 -- snipmate format
 from_snipmate_snip.load()
-from_snipmate_snip.lazy_load { paths = vim.g.snipmate_snippets_path or "~/.config/nvim/snippets" }
+from_snipmate_snip.lazy_load { paths = vim.g.snipmate_snippets_path or "~/.config/nvim/snippets/" }
 
 -- lua format
 from_lua_snip.load()

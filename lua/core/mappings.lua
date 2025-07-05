@@ -49,6 +49,8 @@ M.general = {
 
     -- Copy all
     ["<C-c>"] = { "<cmd> %y+ <CR>", "Copy whole file" },
+    -- Copy to clipboard register
+    ["<C-y>"] = { '"+yy', "Copy line"},
     --Highlight all
     ["<leader>ha"] = { "<cmd> HighlightAll <CR>", "Highlight whole file" },
 
@@ -58,10 +60,6 @@ M.general = {
 
     ["gi"] = { "ggO", "Insert in the beggining of the file" },
     ["ga"] = { "Go", "Insert in the end of the file" },
-
-    -- line numbers
-    ["<leader>n"] = { "<cmd> set nu! <CR>", "Toggle line number" },
-    ["<leader>rn"] = { "<cmd> set rnu! <CR>", "Toggle relative number" },
 
     -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
     -- http://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
@@ -105,6 +103,7 @@ M.general = {
     ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
     ["<"] = { "<gv", "Indent line" },
     [">"] = { ">gv", "Indent line" },
+    ["<C-y>"] = { '"+y', "Copy to clipboard register" },
   },
 
   x = {
@@ -208,16 +207,16 @@ M.lspconfig = {
 
     ["[d"] = {
       function()
-        vim.diagnostic.goto_prev { float = false }
+        vim.diagnostic.jump { count = -1 }
       end,
-      "Goto prev",
+      "Goto prev diagnostic",
     },
 
     ["]d"] = {
       function()
-        vim.diagnostic.goto_next { float = false }
+        vim.diagnostic.jump { count = 1 }
       end,
-      "Goto next",
+      "Goto next diagnostic",
     },
   },
 

@@ -7,8 +7,13 @@ local options = {
 
     -- Config Languages
     "lua",
+
+    -- Auxiliar Languanges
     "markdown",
-    "vimdoc",
+    "markdown_inline",
+    "vim",
+    "regex",
+    "bash",
   },
 
   highlight = {
