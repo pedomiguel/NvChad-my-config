@@ -1,12 +1,12 @@
 local lualine = require('lualine')
+local noice = require('noice')
 
 lualine.setup {
   options = {
     icons_enabled = true,
     theme = 'auto',
     component_separators = { left = '', right = ''},
-    -- section_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
     disabled_filetypes = {
       statusline = {},
       winbar = {},
@@ -14,7 +14,7 @@ lualine.setup {
     ignore_focus = {},
     always_divide_middle = true,
     always_show_tabline = true,
-    globalstatus = false,
+    globalstatus = true,
     refresh = {
       statusline = 1000,
       tabline = 1000,
@@ -38,7 +38,13 @@ lualine.setup {
     lualine_a = {'mode'},
     lualine_b = {'branch', 'diff', 'diagnostics'},
     lualine_c = {{ 'filename', path = 1 }},
-    lualine_x = {'filetype'},
+    lualine_x = {
+      {
+        noice.api.statusline.mode.get,
+        cond = require("noice").api.statusline.mode.has,
+      },
+      'filetype',
+    },
     lualine_y = {'progress'},
     lualine_z = {'location'}
   },

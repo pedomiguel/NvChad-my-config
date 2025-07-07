@@ -244,6 +244,7 @@ M.telescope = {
     ["<leader>fz"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "Find in current buffer" },
     ["<leader>ft"] = { "<cmd> Telescope file_browser <CR>", "Open File Browser" },
     ["<leader>fs"] = { "<cmd> Telescope lsp_document_symbols <CR>", "Find Symbols" },
+    ["<leader>fn"] = { "<cmd> Telescope noice <CR>", "Noice History" },
 
     -- git
     ["<leader>gt"] = { "<cmd> Telescope git_status <CR>", "Git status" },

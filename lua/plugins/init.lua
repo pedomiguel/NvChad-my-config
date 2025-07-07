@@ -290,6 +290,18 @@ local plugins = {
     end
   },
 
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    config = function ()
+      return require "plugins.configs.noice"
+    end,
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+    }
+  },
+
 }
 
 local config = require("core.utils").load_config()
