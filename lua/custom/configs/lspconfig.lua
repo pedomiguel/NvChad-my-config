@@ -6,79 +6,72 @@ local capabilities = base.capabilities
 local lspconfig = require("lspconfig")
 local util = require "lspconfig/util"
 
-lspconfig.clangd.setup ({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
-})
-
-lspconfig.pyright.setup ({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = {
-    python = {
-      analysis = {
-        typeCheckingMode = "standard",
-        diagnosticSeverityOverrides = {
-          reportMissingImports = "error",
-          reportUnusedVariable = "none",
-          reportPossiblyUnboundVariable = "warning",
-          reportUnusedImport = "none",
-          reportUnknownParameterType = "warning",
-          reportImportCycles = "error",
-          reportMissingTypeArgument = "warning",
-          reportReturnType = "warning",
-          reportDuplicateImport = "warning",
-        },
-        diagnosticMode = "workspace",
-        autoSearchPaths = true,
-        useLibraryCodeForTypes = true,
-      },
-    },
+local servers = {
+  clangd = {
+    filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
   },
-  filetypes = { "python" },
-})
-
-lspconfig.ts_ls.setup ({
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
-
-lspconfig['vhdl_ls'].setup({
-  on_attach = on_attach,
-  capabilities = capabilities
-})
-
-lspconfig.gopls.setup ({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  cmd = {"gopls"},
-  filetypes = { "go", "gomod", "gowork", "gotmpl" },
-  root_dir = util.root_pattern("go.work", "go.mod", ".git"),
-  settings = {
-    gopls = {
-      staticcheck = true,
-      completeUnimported = true,
-      usePlaceholders = true,
-      analyses = {
-        unusedparams = true,
-        unreachble = true,
-        niless = true,
-        shadow = true,
-      },
-      hints = {
-        rangevariableTypes = true,
-        parameterNames = true,
-        functiontypeparameters = true,
+  ruff = {
+    filetypes = { "python" },
+  },
+  pyright = {
+    filetypes = { "python" },
+    root_dir = util.root_pattern("pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", ".git"),
+    settings = {
+      python = {
+        analysis = {
+          autoSearchPaths = true,
+          diagnosticMode = "workspace",
+          diagnosticSeverityOverrides = {
+            reportDuplicateImport = "warning",
+            reportImportCycles = "error",
+            reportMissingImports = "error",
+            reportMissingTypeArgument = "warning",
+            reportPossiblyUnboundVariable = "warning",
+            reportReturnType = "warning",
+            reportUnknownParameterType = "warning",
+            reportUnusedImport = "none",
+            reportUnusedVariable = "none"
+          },
+          typeCheckingMode = "standard",
+          useLibraryCodeForTypes = true
+        }
       }
+    }
+  },
+  ts_ls = {},
+  vhdl_ls = {},
+  gopls = {
+    filetypes = { "go", "gomod", "gowork", "gotmpl" },
+    cmd = { "gopls" },
+    root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+    settings = {
+      gopls = {
+        staticcheck = true,
+        completeUnimported = true,
+        usePlaceholders = true,
+        analyses = {
+          unusedparams = true,
+          unreachable = true,
+          nilness = true,
+          shadow = true,
+        },
+        hints = {
+          rangeVariableTypes = true,
+          parameterNames = true,
+          functionTypeParameters = true,
+        },
+      },
     },
   },
-})
+  java_language_server = {
+    cmd = { "java-language-server" },
+    filetypes = { "java" },
+    root_dir = util.root_pattern(".git", "build.gradle", "pom.xml"),
+  },
+}
 
-lspconfig.java_language_server.setup ({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  cmd = { "java-language-server" }, -- should be in PATH via Mason
-  filetypes = { "java" },
-  root_dir = util.root_pattern(".git", "build.gradle", "pom.xml"),
-})
+for name, config in pairs(servers) do
+  config.on_attach = on_attach
+  config.capabilities = capabilities
+  lspconfig[name].setup(config)
+end
