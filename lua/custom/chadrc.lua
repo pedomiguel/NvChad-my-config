@@ -40,9 +40,10 @@ M.ui = {
       { " Bookmarks", "Spc m a", "Telescope marks" },
       { " Themes", "Spc t h", "Telescope themes" },
       { " Mappings", "Spc c h", "NvCheatsheet" },
-      { "󰒲 Lazy", "Command Line", "Lazy" },
-      { "󰣪 Mason", "Command Line", "Mason" },
-      { "󰿅 Exit", "Command Line", "Q" },
+      { " Session", "Cmd Line", "source Session.vim" },
+      { "󰒲 Lazy", "Cmd Line", "Lazy" },
+      { "󰣪 Mason", "Cmd Line", "Mason" },
+      { "󰿅 Exit", "Cmd Line", "Q" },
     },
   }
 }
