@@ -297,6 +297,22 @@ local plugins = {
     }
   },
 
+  {
+    'mluders/comfy-line-numbers.nvim',
+    lazy = false,
+    config = function ()
+      return require "plugins.configs.comfy_line_numbers"
+    end
+  },
+
+  {
+    'nguyenvukhang/nvim-toggler',
+    lazy = false,
+    config = function ()
+      return require "plugins.configs.toggler"
+    end,
+  },
+
 }
 
 local config = require("core.utils").load_config()
