@@ -224,14 +224,9 @@ local plugins = {
   {
     "folke/which-key.nvim",
     event = "BufEnter",
-    keys = { "<leader>", "<c-r>", "<c-w>", '"', "'", "`", "c", "v", "g", "y", "z" },
-    init = function()
-      require("core.utils").load_mappings "whichkey"
-    end,
     cmd = "WhichKey",
-    config = function(_, opts)
-      dofile(vim.g.base46_cache .. "whichkey")
-      require("which-key").setup(opts)
+    config = function()
+      return require "plugins.configs.which_key"
     end,
   },
 

@@ -89,6 +89,7 @@ local options = {
       dir_icon = "",
       path = "%:p:h",
       select_buffer = true,
+      grouped = true,
       mappings = {
         n = {
           ["<bs>"] = fb_actions.goto_parent_dir, -- g is the default

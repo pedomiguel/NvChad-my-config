@@ -27,7 +27,7 @@ lspconfig.pyright.setup ({
           reportUnknownParameterType = "warning",
           reportImportCycles = "error",
           reportMissingTypeArgument = "warning",
-          reportReturnType = "error",
+          reportReturnType = "warning",
           reportDuplicateImport = "warning",
         },
         diagnosticMode = "workspace",
