@@ -1,9 +1,6 @@
 local base = require("plugins.configs.lspconfig")
 
-local on_attach = base.on_attach
-local capabilities = base.capabilities
-
-local lspconfig = require("lspconfig")
+local lsp = base.lsp
 local util = require "lspconfig/util"
 
 local servers = {
@@ -15,28 +12,10 @@ local servers = {
   },
   pyright = {
     filetypes = { "python" },
-    root_dir = util.root_pattern("pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", ".git"),
-    settings = {
-      python = {
-        analysis = {
-          autoSearchPaths = true,
-          diagnosticMode = "workspace",
-          diagnosticSeverityOverrides = {
-            reportDuplicateImport = "warning",
-            reportImportCycles = "error",
-            reportMissingImports = "error",
-            reportMissingTypeArgument = "warning",
-            reportPossiblyUnboundVariable = "warning",
-            reportReturnType = "warning",
-            reportUnknownParameterType = "warning",
-            reportUnusedImport = "none",
-            reportUnusedVariable = "none"
-          },
-          typeCheckingMode = "standard",
-          useLibraryCodeForTypes = true
-        }
-      }
-    }
+    pyright = { disableOrganizeImports = true, },
+    python = {
+      analysis = { ignore = { '*' }, },
+    },
   },
   ts_ls = {},
   vhdl_ls = {},
@@ -70,8 +49,7 @@ local servers = {
   },
 }
 
-for name, config in pairs(servers) do
-  config.on_attach = on_attach
-  config.capabilities = capabilities
-  lspconfig[name].setup(config)
+for server, settings in pairs(servers) do
+  lsp.config(server, { settings = settings, })
+  lsp.enable(server)
 end
