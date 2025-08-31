@@ -108,7 +108,7 @@ autocmd("VimEnter", {
       vim.cmd "Telescope file_browser"
     end
   end,
-  desc = "Open NvimTree when in a directory",
+  desc = "Open Telescope file browser when in a directory",
 })
 
 autocmd('BufReadPost', {
@@ -127,7 +127,7 @@ autocmd("FileType", {
   callback = function()
     vim.bo.shiftwidth = 4
   end,
-  desc = "Set shiftwidth to 4 in clang and python files",
+  desc = "Set shiftwidth to 4 in python files",
 })
 
 autocmd("LspAttach", {
@@ -143,6 +143,18 @@ autocmd("LspAttach", {
     end
   end,
   desc = 'LSP: Disable hover capability from Ruff',
+})
+
+autocmd("InsertLeave", {
+  callback = function()
+    if
+      require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
+      and not require("luasnip").session.jump_active
+    then
+      require("luasnip").unlink_current()
+    end
+  end,
+  desc = "Snip autocmd"
 })
 
 autocmd("FileType", {

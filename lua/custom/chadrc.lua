@@ -5,7 +5,7 @@ M.ui = {
   theme = "tokyodark",
   transparency = false,
   hl_override = {
-    CursorLine = { bg = "#202132" }, -- "#2a2a2a"/#3b4261
+    CursorLine = { bg = "#202132" }, -- #202132/#2a2a2a/#3b4261
   },
 
   cmp = {

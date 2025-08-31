@@ -16,6 +16,6 @@ comfy.setup({
   down_key = 'j',
 
   -- Line numbers will be completely hidden for the following file/buffer types
-  hidden_file_types = { 'undotree', 'nvdash', 'TelescopePrompt', 'tagbar' },
-  hidden_buffer_types = { 'terminal', 'nofile', 'prompt' },
+  hidden_file_types = { 'undotree', 'qf', 'nvdash', 'TelescopePrompt', 'tagbar' },
+  hidden_buffer_types = { 'terminal', 'nofile', 'prompt', 'quickfix' },
 })

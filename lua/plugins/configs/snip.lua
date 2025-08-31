@@ -20,19 +20,7 @@ from_snipmate_snip.lazy_load { paths = vim.g.snipmate_snippets_path or "~/.confi
 from_lua_snip.load()
 from_lua_snip.lazy_load { paths = vim.g.lua_snippets_path or "" }
 
-vim.api.nvim_create_autocmd("InsertLeave", {
-  callback = function()
-    if
-      ls.session.current_nodes[vim.api.nvim_get_current_buf()]
-      and not ls.session.jump_active
-    then
-      ls.unlink_current()
-    end
-  end,
-})
-
 -- Custom snippets
-
 ls.add_snippets("python", {
   s("__main__", {
     t('if __name__ == "__main__":'),
