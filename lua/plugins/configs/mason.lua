@@ -3,6 +3,7 @@ local options = {
     -- Lsp
     "lua-language-server",
     "pyright", -- node >= 18.0
+    "ruff",
     "clangd",
   },
 

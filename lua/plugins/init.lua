@@ -49,6 +49,7 @@ local plugins = {
     init = function()
       require("core.utils").lazy_load "nvim-treesitter"
     end,
+    dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
     build = ":TSUpdate",
     opts = function()
@@ -228,17 +229,6 @@ local plugins = {
     config = function()
       return require "plugins.configs.which_key"
     end,
-  },
-
-  {
-    'echasnovski/mini.ai',
-    lazy = false,
-    version = false,
-    branch = "main",
-    config = function ()
-      return require "plugins.configs.miniai"
-    end,
-    dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
   },
 
   {
