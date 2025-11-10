@@ -1,6 +1,9 @@
 local opt = vim.opt
 local g = vim.g
 local wo = vim.wo
+local api = vim.api
+local alias = api.nvim_command
+
 local config = require("core.utils").load_config()
 
 -------------------------------------- globals -----------------------------------------
@@ -24,7 +27,7 @@ opt.shiftwidth = 2
 opt.smartindent = true
 opt.tabstop = 2
 opt.softtabstop = 2
-opt.autoindent = false
+opt.autoindent = true
 
 opt.fillchars = { eob = "¬" }
 opt.ignorecase = true
@@ -68,17 +71,14 @@ for _, provider in ipairs { "node", "perl", "python3", "ruby" } do
 end
 
 -- add binaries installed by mason.nvim to path
-local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
-vim.env.PATH = vim.fn.stdpath "data" .. "/mason/bin" .. (is_windows and ";" or ":") .. vim.env.PATH
-
-local api = vim.api
+vim.env.PATH = vim.fn.stdpath "data" .. "/mason/bin" .. (":") .. vim.env.PATH
 
 -------------------------------------- aliases  ------------------------------------------
-local alias = api.nvim_command
 
-alias('command! Q wqa')
-alias('command! BufferPath echo expand("%:p")')
 alias('command! HighlightAll normal! ggVG')
+alias('command! Lsr LspRestart')
+alias('command! Qa wa | qa')
+alias('command! Msq mks! | wa | qa')
 
 -------------------------------------- autocmds ------------------------------------------
 local autocmd = api.nvim_create_autocmd
@@ -182,19 +182,19 @@ autocmd("BufWritePost", {
 
     config = require("core.utils").load_config()
 
-    vim.g.nvchad_theme = config.ui.theme
-    vim.g.transparency = config.ui.transparency
+    g.nvchad_theme = config.ui.theme
+    g.transparency = config.ui.transparency
 
     -- statusline
     if config.ui.statusline.enabled then
       require("plenary.reload").reload_module("nvchad.statusline." .. config.ui.statusline.theme)
-      vim.opt.statusline = "%!v:lua.require('nvchad.statusline." .. config.ui.statusline.theme .. "').run()"
+      opt.statusline = "%!v:lua.require('nvchad.statusline." .. config.ui.statusline.theme .. "').run()"
     end
 
     -- tabufline
     if config.ui.tabufline.enabled then
       require("plenary.reload").reload_module "nvchad.tabufline.modules"
-      vim.opt.tabline = "%!v:lua.require('nvchad.tabufline.modules').run()"
+      opt.tabline = "%!v:lua.require('nvchad.tabufline.modules').run()"
     end
 
     require("base46").load_all_highlights()

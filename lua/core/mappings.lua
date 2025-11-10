@@ -28,18 +28,11 @@ M.general = {
     -- break the line
     ["gj"] = { "i<CR><Esc>k$", "Break the line" },
 
-    --[[ -- switch between windows
+    -- switch between windows
     ["<C-h>"] = { "<C-w>h", "Window left" },
     ["<C-l>"] = { "<C-w>l", "Window right" },
     ["<C-j>"] = { "<C-w>j", "Window down" },
-    ["<C-k>"] = { "<C-w>k", "Window up" }, ]]
-
-    -- Overring for tmux plugin navigation
-    ["<C-h>"] = { "<cmd> TmuxNavigateLeft <CR>", "Window Left"},
-    ["<C-l>"] = { "<cmd> TmuxNavigateRight <CR>", "Window right" },
-    ["<C-j>"] = { "<cmd> TmuxNavigateDown <CR>", "Window down" },
-    ["<C-k>"] = { "<cmd> TmuxNavigateUp <CR>", "Window up" },
-
+    ["<C-k>"] = { "<C-w>k", "Window up" },
 
     -- Resize windows
     ["<C-Up>"] = { "<cmd> resize +2 <CR>", "Decrease vertical window size" },
@@ -71,16 +64,11 @@ M.general = {
     ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
 
     -- manage buffers
-    ["<leader>b"] = { "<cmd> enew <CR>", "New buffer" },
     ["<leader>x"] = { "<cmd> bdelete <CR>", "Close current buffer" },
     ["<Tab>"] = { "<cmd> bnext <CR>", "Go to next buffer" },
     ["<S-Tab>"] = { "<cmd> bprevious <CR>", "Go to previous buffer" },
 
     ["<leader>ch"] = { "<cmd> NvCheatsheet <CR>", "Mapping cheatsheet" },
-
-    -- quickfix list navigation
-    ["]q"] = { "<cmd> cnext <CR>", "Go to next buffer in quickfix list" },
-    ["[q"] = { "<cmd> cprevious <CR>", "Go to previous buffer in quickfix list" },
 
     ["<leader>fm"] = {
       function()
@@ -198,7 +186,7 @@ M.lspconfig = {
       "LSP references",
     },
 
-    ["<leader>lf"] = {
+    ["S"] = {
       function()
         vim.diagnostic.open_float { border = nil , source = true, }
       end,
@@ -359,12 +347,6 @@ M.leap = {
   o = {
     ["s"] = { "<Plug>(leap-anywhere)", "Leap forward" },
   },
-}
-
-M.tagbar = {
-  n = {
-    ["<leader>tt"] = { "<cmd> TagbarToggle <CR>", "Toggle Tagbar" },
-  }
 }
 
 return M
