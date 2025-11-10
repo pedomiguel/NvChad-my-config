@@ -3,6 +3,7 @@ local s = ls.snippet
 local t = ls.text_node
 local i = ls.insert_node
 local f = ls.function_node
+local d = ls.dynamic_node
 
 local vscode_snip = require("luasnip.loaders.from_vscode")
 local from_snipmate_snip = require("luasnip.loaders.from_snipmate")
@@ -69,7 +70,7 @@ ls.add_snippets("python", {
     i(1, "VAR_NAME"),
     t(" = os.getenv(\""),
     f(function (args)
-      return string.upper(args[1][1])
+      return string.upper(args[1][1] or "") -- Must press tab to trigger it
     end, {1}),
     t("\")")
   }),

@@ -253,19 +253,6 @@ local plugins = {
   },
 
   {
-    "christoomey/vim-tmux-navigator",
-    lazy = false,
-  },
-
-  {
-    "preservim/tagbar", -- sudo apt-get install exuberant-ctags
-    lazy = false,
-    config = function()
-      return require "plugins.configs.tagbar"
-    end
-  },
-
-  {
     'nvim-lualine/lualine.nvim',
     lazy = false,
     enabled = true,
@@ -285,14 +272,6 @@ local plugins = {
       -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
       "MunifTanjim/nui.nvim",
     }
-  },
-
-  {
-    'mluders/comfy-line-numbers.nvim',
-    lazy = false,
-    config = function ()
-      return require "plugins.configs.comfy_line_numbers"
-    end
   },
 
   {
