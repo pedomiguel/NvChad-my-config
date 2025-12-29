@@ -24,7 +24,10 @@ ts.setup({
     use_languagetree = true,
   },
 
-  indent = { enable = true },
+  indent = {
+    enable = true,
+    disable = { "python" }
+  },
 
   textobjects = {
     select = {

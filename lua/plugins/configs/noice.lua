@@ -14,18 +14,11 @@ noice.setup({
   },
   routes = {
     {
-      filter = {
-        event = "msg_show",
-        kind = "echo",
-        find = "written",
-      },
+      filter = { event = "msg_show", kind = "", find = "written" },
       opts = { skip = true },
     },
     {
-      filter = {
-        event = "msg_showcmd",
-        kind = "cmdline"
-      },
+      filter = { event = "msg_showcmd", kind = "cmdline" },
       opts = { skip = true },
     },
   },

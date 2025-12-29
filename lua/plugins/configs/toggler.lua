@@ -8,6 +8,7 @@ toggler.setup({
     ['True'] = 'False',
     ['1'] = '0',
     ['on'] = 'off',
+    ['enabled'] = 'disabled',
   },
   -- removes the default <leader>i keymap
   remove_default_keybinds = false,

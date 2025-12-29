@@ -1,7 +1,6 @@
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 local fb_actions = require "telescope._extensions.file_browser.actions"
-local lga_actions = require("telescope-live-grep-args.actions")
 
 local function close_buffer(prompt_bufrn)
   local sucess, err = pcall(actions.delete_buffer, prompt_bufrn)

@@ -1,5 +1,6 @@
 local lualine = require('lualine')
-local noice = require('noice')
+local noice_mode = require('noice').api.statusline.mode
+local fn = vim.fn
 
 lualine.setup {
   options = {
@@ -37,16 +38,24 @@ lualine.setup {
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = {{ 'filename', path = 1 }},
+    lualine_c = {{ 'filename', path = 1, shorting_targed = 40 }},
     lualine_x = {
       {
-        noice.api.statusline.mode.get,
-        cond = require("noice").api.statusline.mode.has,
+        noice_mode.get,
+        cond = noice_mode.has,
+        color = { fg = "#ff9e64" }
       },
       'filetype',
     },
     lualine_y = {'progress'},
-    lualine_z = {'location'}
+    lualine_z = {
+      function ()
+        local cur = fn.line('.')
+        local total = fn.line('$')
+        local col = fn.col('.')
+        return string.format("%d/%d : %d", cur, total, col)
+      end
+    }
   },
   inactive_sections = {
     lualine_a = {'mode'},
