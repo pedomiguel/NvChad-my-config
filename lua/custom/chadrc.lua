@@ -33,13 +33,11 @@ M.ui = {
     },
     buttons = {
       { " File Browser", "Spc f t", "Telescope file_browser" },
-      { " Find File", "Spc f f", "Telescope find_files" },
       { "󰈚 Recent Files", "Spc f o", "Telescope oldfiles" },
-      { " Git Status", "Spc g t", "Telescope git_status" },
+      { " Find File", "Spc f f", "Telescope find_files" },
+      { " Find All", "Spc f a", "Telescope find_files follow=true no_ignore=true hidden=true" },
+      { " Lazy Git", "Spc l g", "LazyGit" },
       { "󰈭 Find Word", "Spc f w", "Telescope live_grep_args" },
-      { " Bookmarks", "Spc m a", "Telescope marks" },
-      { " Themes", "Spc t h", "Telescope themes" },
-      { " Mappings", "Spc c h", "NvCheatsheet" },
       { " Session", "Cmd Line", "source Session.vim" },
       { "󰒲 Lazy", "Cmd Line", "Lazy" },
       { "󰣪 Mason", "Cmd Line", "Mason" },
@@ -47,5 +45,23 @@ M.ui = {
     },
   }
 }
+
+local keyword_groups_to_italicize = {
+  "@comment",
+  "@keyword",
+  "@keyword.function",
+  "@keyword.return",
+  "@keyword.operator",
+  "@keyword.conditional",
+  "@keyword.repeat",
+  "@keyword.exception",
+  "@keyword.import",
+  "@storageclass",
+  "@type.definition",
+}
+
+for _, group in ipairs(keyword_groups_to_italicize) do
+  M.ui.hl_override[group] = { italic = true }
+end
 
 return M

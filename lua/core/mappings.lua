@@ -188,7 +188,7 @@ M.lspconfig = {
 
     ["S"] = {
       function()
-        vim.diagnostic.open_float { border = nil , source = true, }
+        vim.diagnostic.open_float { border = nil , source = false, }
       end,
       "Floating diagnostic",
     },
@@ -236,6 +236,7 @@ M.telescope = {
 
     -- git
     ["<leader>gt"] = { "<cmd> Telescope git_status <CR>", "Git status" },
+    ["<leader>lg"] = { "<cmd> LazyGit <CR>", "LazyGit" },
 
     -- ui
     ["<leader>th"] = { "<cmd> Telescope themes <CR>", "Nvchad themes" },
