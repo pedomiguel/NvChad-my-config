@@ -3,6 +3,7 @@ local g = vim.g
 local wo = vim.wo
 local api = vim.api
 local alias = api.nvim_command
+local autocmd = api.nvim_create_autocmd
 
 local config = require("core.utils").load_config()
 
@@ -11,6 +12,7 @@ g.nvchad_theme = config.ui.theme
 g.base46_cache = vim.fn.stdpath "data" .. "/nvchad/base46/"
 g.toggle_theme_icon = "   "
 g.transparency = config.ui.transparency
+g.health = { style = "float" }
 
 -------------------------------------- options ------------------------------------------
 opt.laststatus = 3 -- global statusline
@@ -19,7 +21,11 @@ opt.showmode = false
 opt.wrap = true
 
 opt.cursorline = true
-opt.guicursor = "a:block-blinkon100"
+opt.guicursor =
+  "n-v-c:block," ..
+  "i:ver25-blinkon100," ..
+  "r-cr:hor20," ..
+  "o:hor50"
 
 -- Indenting
 opt.expandtab = true
@@ -33,6 +39,7 @@ opt.fillchars = { eob = "¬" }
 opt.ignorecase = true
 opt.smartcase = true
 opt.mouse = "a"
+opt.autoread = true
 
 -- Numbers
 opt.number = false
@@ -81,7 +88,6 @@ alias('command! Qa wa | qa')
 alias('command! Msq mks! | wa | qa')
 
 -------------------------------------- autocmds ------------------------------------------
-local autocmd = api.nvim_create_autocmd
 
 autocmd("TextYankPost", {
   pattern = '*',
@@ -97,6 +103,14 @@ autocmd('BufWritePre', {
     vim.cmd([[%s/\s\+$//e]])
   end,
   desc = "Trim trailing whitespace on save",
+})
+
+autocmd({ "FocusGained", "BufEnter" }, {
+  pattern = "*",
+  callback = function()
+    vim.cmd("checktime")
+  end,
+  desc = "Reload file if changed on disk",
 })
 
 autocmd("VimEnter", {
@@ -123,11 +137,11 @@ autocmd('BufReadPost', {
 })
 
 autocmd("FileType", {
-  pattern = { "py", },
+  pattern = { "py", "js", "java" },
   callback = function()
     vim.bo.shiftwidth = 4
   end,
-  desc = "Set shiftwidth to 4 in python files",
+  desc = "Set shiftwidth to 4 in the type of files listed above",
 })
 
 autocmd("LspAttach", {
@@ -142,7 +156,19 @@ autocmd("LspAttach", {
       client.server_capabilities.hoverProvider = false
     end
   end,
-  desc = 'LSP: Disable hover capability from Ruff',
+  desc = "LSP: Disable hover capability from Ruff",
+})
+
+autocmd("BufReadPost", {
+  pattern = { "*.py" },
+  callback = function ()
+    local path = vim.fn.expand("%:p")
+    if path:match(".venv") or path:match("site%-packges") then
+      vim.bo.readonly = true
+      vim.bo.modifiable = false
+    end
+  end,
+  desc = "Avoid modify python packges files"
 })
 
 autocmd("InsertLeave", {
