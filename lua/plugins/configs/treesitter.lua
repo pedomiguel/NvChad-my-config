@@ -26,7 +26,6 @@ ts.setup({
 
   indent = {
     enable = true,
-    disable = { "python" }
   },
 
   textobjects = {

@@ -38,14 +38,30 @@ lualine.setup {
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = {{ 'filename', path = 1, shorting_targed = 40 }},
+    lualine_c = {
+      {
+        'buffers',
+        show_filename_only = true,
+        show_modified_status = true,
+        mode = 0,
+        symbols = {
+          modified = ' ●',
+          alternate_file = '',
+          directory =  '',
+        },
+        use_mode_colors = false,
+        buffers_color = {
+          active = 'lualine_a_normal',
+          inactive = 'lualine_c_normal',
+        },
+      }
+    },
     lualine_x = {
       {
         noice_mode.get,
         cond = noice_mode.has,
         color = { fg = "#ff9e64" }
       },
-      'filetype',
     },
     lualine_y = {'progress'},
     lualine_z = {

@@ -9,6 +9,11 @@ toggler.setup({
     ['1'] = '0',
     ['on'] = 'off',
     ['enabled'] = 'disabled',
+    ['or'] = 'and',
+    ['||'] = '&&',
+    ['=='] = '!=',
+    ['right'] = 'left',
+    ['up'] = 'bottom',
   },
   -- removes the default <leader>i keymap
   remove_default_keybinds = false,
