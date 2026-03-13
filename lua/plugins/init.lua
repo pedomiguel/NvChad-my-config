@@ -66,7 +66,7 @@ local plugins = {
       })
     end,
     opts = function()
-      return require("plugins.configs.gitsings")
+      return require "plugins.configs.gitsings"
     end,
     config = function(_, opts)
       dofile(vim.g.base46_cache .. "git")
@@ -96,9 +96,9 @@ local plugins = {
 
   {
     "williamboman/mason-lspconfig.nvim",
-    config = function ()
+    config = function()
       require("mason-lspconfig").setup()
-    end
+    end,
   },
 
   {
@@ -185,7 +185,7 @@ local plugins = {
       "nvim-telescope/telescope-symbols.nvim",
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
       { "nvim-telescope/telescope-live-grep-args.nvim", version = "^1.0.0" },
-      { "nvim-telescope/telescope-file-browser.nvim", }
+      { "nvim-telescope/telescope-file-browser.nvim" },
     },
     cmd = "Telescope",
     init = function()
@@ -217,9 +217,9 @@ local plugins = {
   },
 
   {
-    "ggandor/leap.nvim",
+    "https://codeberg.org/andyg/leap.nvim",
     lazy = false,
-    config = function ()
+    config = function()
       return require "plugins.configs.leap"
     end,
   },
@@ -238,31 +238,31 @@ local plugins = {
   },
 
   {
-    'nvim-lualine/lualine.nvim',
+    "nvim-lualine/lualine.nvim",
     lazy = false,
     enabled = true,
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    config = function ()
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
       return require "plugins.configs.lualine"
-    end
+    end,
   },
 
   {
     "folke/noice.nvim",
     event = "VeryLazy",
-    config = function ()
+    config = function()
       return require "plugins.configs.noice"
     end,
     dependencies = {
       -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
       "MunifTanjim/nui.nvim",
-    }
+    },
   },
 
   {
-    'nguyenvukhang/nvim-toggler',
+    "nguyenvukhang/nvim-toggler",
     lazy = false,
-    config = function ()
+    config = function()
       return require "plugins.configs.toggler"
     end,
   },
@@ -284,8 +284,35 @@ local plugins = {
     },
     -- setting the keybinding for LazyGit with 'keys' is recommended in
     -- order to load the plugin when the command is run for the first time
-  }
+  },
 
+  {
+    "zbirenbaum/copilot.lua",
+    dependencies = {
+      "copilotlsp-nvim/copilot-lsp", -- (optional) for NES functionality
+    },
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      return require "plugins.configs.copilot"
+    end,
+  },
+
+  {
+    "stevearc/conform.nvim", -- For autoformatting on save
+    event = "VeryLazy",
+    config = function()
+      require "plugins.configs.conform"
+    end,
+  },
+
+  {
+    "smjonas/inc-rename.nvim",
+    event = "LspAttach",
+    config = function()
+      return require "plugins.configs.inc_rename"
+    end,
+  },
 }
 
 local config = require("core.utils").load_config()

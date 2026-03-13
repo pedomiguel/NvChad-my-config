@@ -46,12 +46,12 @@ local function border(hl_name)
 end
 
 local options = {
-  enabled = function ()
+  enabled = function()
     local disabled = false
-    disabled = disabled or (vim.api.nvim_get_option_value('buftype', { buf = 0 }) == 'prompt')
-    disabled = disabled or (vim.fn.reg_recording() ~= '')
-    disabled = disabled or (vim.fn.reg_executing() ~= '')
-    disabled = disabled or require('cmp.config.context').in_treesitter_capture('comment')
+    disabled = disabled or (vim.api.nvim_get_option_value("buftype", { buf = 0 }) == "prompt")
+    disabled = disabled or (vim.fn.reg_recording() ~= "")
+    disabled = disabled or (vim.fn.reg_executing() ~= "")
+    disabled = disabled or require("cmp.config.context").in_treesitter_capture "comment"
     return not disabled
   end,
   completion = {
@@ -97,7 +97,7 @@ local options = {
       end
     end,
 
-    ['<C-g>'] = function()
+    ["<C-g>"] = function()
       if cmp.visible_docs() then
         cmp.close_docs()
       else
@@ -107,7 +107,7 @@ local options = {
 
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
-        cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+        cmp.select_next_item { behavior = cmp.SelectBehavior.Select }
       elseif snip.expand_or_jumpable() then
         vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
       else
@@ -120,7 +120,7 @@ local options = {
 
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
-        cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+        cmp.select_prev_item { behavior = cmp.SelectBehavior.Select }
       elseif snip.jumpable(-1) then
         vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
       else
@@ -130,31 +130,29 @@ local options = {
       "i",
       "s",
     }),
-
   },
   sources = {
-    { name = "nvim_lsp", max_item_count=10 },
+    { name = "nvim_lsp", max_item_count = 10 },
     {
       name = "buffer",
-      max_item_count=10,
+      max_item_count = 10,
       option = {
-        get_bufnrs = function ()
+        get_bufnrs = function()
           local bufs = {}
           for _, win in ipairs(vim.api.nvim_list_wins()) do
             bufs[vim.api.nvim_win_get_buf(win)] = true
           end
           return vim.tbl_keys(bufs)
-        end
-      }
+        end,
+      },
     },
-    { name = "luasnip", max_item_count=5 },
-    { name = "path", max_item_count=5 },
-    { name = "nvim_lua", max_item_count=3 },
+    { name = "luasnip", max_item_count = 5 },
+    { name = "path", max_item_count = 5 },
+    { name = "nvim_lua", max_item_count = 3 },
   },
 }
 
 if cmp_style ~= "atom" and cmp_style ~= "atom_colored" then
   options.window.completion.border = border "CmpBorder"
 end
-
 return options

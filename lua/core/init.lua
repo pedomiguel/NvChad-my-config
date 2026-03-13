@@ -21,11 +21,7 @@ opt.showmode = false
 opt.wrap = true
 
 opt.cursorline = true
-opt.guicursor =
-  "n-v-c:block," ..
-  "i:ver25-blinkon100," ..
-  "r-cr:hor20," ..
-  "o:hor50"
+opt.guicursor = "n-v-c:block," .. "i:ver25-blinkon100," .. "r-cr:hor20," .. "o:hor50"
 
 -- Indenting
 opt.expandtab = true
@@ -56,6 +52,7 @@ opt.splitright = true
 opt.termguicolors = true
 opt.timeoutlen = 400
 opt.undofile = true
+opt.inccommand = "split"
 
 -- interval for writing swap file to disk, also used by gitsigns
 opt.updatetime = 250
@@ -67,8 +64,8 @@ opt.whichwrap:append "<>[]hl"
 g.mapleader = " " -- Space key
 
 -- folding
-wo.foldmethod = 'expr'
-wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+wo.foldmethod = "expr"
+wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 wo.foldlevel = 99 -- Keep folders open in start
 wo.foldenable = true
 
@@ -78,29 +75,29 @@ for _, provider in ipairs { "node", "perl", "python3", "ruby" } do
 end
 
 -- add binaries installed by mason.nvim to path
-vim.env.PATH = vim.fn.stdpath "data" .. "/mason/bin" .. (":") .. vim.env.PATH
+vim.env.PATH = vim.fn.stdpath "data" .. "/mason/bin" .. ":" .. vim.env.PATH
 
 -------------------------------------- aliases  ------------------------------------------
 
-alias('command! HighlightAll normal! ggVG')
-alias('command! Lsr LspRestart')
-alias('command! Qa wa | qa')
-alias('command! Msq mks! | wa | qa')
+alias "command! HighlightAll normal! ggVG"
+alias "command! Lsr LspRestart"
+alias "command! Qa wa | qa"
+alias "command! Msq mks! | wa | qa"
 
 -------------------------------------- autocmds ------------------------------------------
 
 autocmd("TextYankPost", {
-  pattern = '*',
-  callback = function ()
+  pattern = "*",
+  callback = function()
     vim.hl.on_yank { timeout = 100 }
   end,
   desc = "Highlight yanked text",
 })
 
-autocmd('BufWritePre', {
-  pattern = '*',
+autocmd("BufWritePre", {
+  pattern = "*",
   callback = function()
-    vim.cmd([[%s/\s\+$//e]])
+    vim.cmd [[%s/\s\+$//e]]
   end,
   desc = "Trim trailing whitespace on save",
 })
@@ -108,7 +105,7 @@ autocmd('BufWritePre', {
 autocmd({ "FocusGained", "BufEnter" }, {
   pattern = "*",
   callback = function()
-    vim.cmd("checktime")
+    vim.cmd "checktime"
   end,
   desc = "Reload file if changed on disk",
 })
@@ -125,12 +122,12 @@ autocmd("VimEnter", {
   desc = "Open Telescope file browser when in a directory",
 })
 
-autocmd('BufReadPost', {
-  pattern = '*',
+autocmd("BufReadPost", {
+  pattern = "*",
   callback = function()
     local line = vim.fn.line
-    if line("'\"") > 0 and line("'\"") <= line("$") then
-      vim.cmd('normal! g`"')
+    if line "'\"" > 0 and line "'\"" <= line "$" then
+      vim.cmd 'normal! g`"'
     end
   end,
   desc = "Open file at last cursor position",
@@ -145,13 +142,13 @@ autocmd("FileType", {
 })
 
 autocmd("LspAttach", {
-  group = vim.api.nvim_create_augroup('lsp_attach_disable_ruff_hover', { clear = true }),
+  group = vim.api.nvim_create_augroup("lsp_attach_disable_ruff_hover", { clear = true }),
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
     if client == nil then
       return
     end
-    if client.name == 'ruff' then
+    if client.name == "ruff" then
       -- Disable hover in favor of Pyright
       client.server_capabilities.hoverProvider = false
     end
@@ -161,14 +158,14 @@ autocmd("LspAttach", {
 
 autocmd("BufReadPost", {
   pattern = { "*.py" },
-  callback = function ()
-    local path = vim.fn.expand("%:p")
-    if path:match(".venv") or path:match("site%-packges") then
+  callback = function()
+    local path = vim.fn.expand "%:p"
+    if path:match ".venv" or path:match "site%-packges" then
       vim.bo.readonly = true
       vim.bo.modifiable = false
     end
   end,
-  desc = "Avoid modify python packges files"
+  desc = "Avoid modify python packges files",
 })
 
 autocmd("InsertLeave", {
@@ -180,7 +177,7 @@ autocmd("InsertLeave", {
       require("luasnip").unlink_current()
     end
   end,
-  desc = "Snip autocmd"
+  desc = "Snip autocmd",
 })
 
 autocmd("FileType", {
@@ -226,7 +223,7 @@ autocmd("BufWritePost", {
     require("base46").load_all_highlights()
     -- vim.cmd("redraw!")
   end,
-  desc = "Reload some chadrc options on-save"
+  desc = "Reload some chadrc options on-save",
 })
 
 -------------------------------------- commands ------------------------------------------

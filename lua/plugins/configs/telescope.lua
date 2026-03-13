@@ -1,5 +1,5 @@
-local telescope = require("telescope")
-local actions = require("telescope.actions")
+local telescope = require "telescope"
+local actions = require "telescope.actions"
 local fb_actions = require "telescope._extensions.file_browser.actions"
 
 local function close_buffer(prompt_bufrn)
@@ -73,12 +73,13 @@ local options = {
     },
   },
 
-  extensions_list = { "themes", "terms", "fzf", "live_grep_args", "file_browser" },
+  extensions_list = { "themes", "terms", "fzf", "live_grep_args", "file_browser", "lazygit" },
   extensions = {
     fzf = {
       fuzzy = true,
       override_generic_sorter = true,
       override_file_sorter = true,
+      lazy = true,
       case_mode = "smart_case",
     },
     live_grep_args = {
@@ -96,9 +97,9 @@ local options = {
         },
         i = {
           ["<bs>"] = false, -- Unbinding backspace
-        }
-      }
-    }
+        },
+      },
+    },
   },
 }
 

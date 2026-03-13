@@ -1,18 +1,12 @@
-local which_key = require("which-key")
+local which_key = require "which-key"
 ---@class wk.Opts
-which_key.setup({
+which_key.setup {
   ---@type false | "classic" | "modern" | "helix"
   preset = "helix",
   -- Delay before showing the popup. Can be a number or a function that returns a number.
   ---@type number | fun(ctx: { keys: string, mode: string, plugin?: string }):number
   delay = function(ctx)
     return ctx.plugin and 0 or 200
-  end,
-  ---@param mapping wk.Mapping
-  filter = function(mapping)
-    -- example to exclude mappings without a description
-    -- return mapping.desc and mapping.desc ~= ""
-    return true
   end,
   --- You can add any mappings here, or use `require('which-key').add()` later
   ---@type wk.Spec
@@ -171,4 +165,4 @@ which_key.setup({
     bt = {},
   },
   debug = false, -- enable wk.log in the current directory
-})
+}

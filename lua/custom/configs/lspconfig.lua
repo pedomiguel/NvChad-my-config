@@ -1,12 +1,12 @@
 local lsp = require("plugins.configs.lspconfig").lsp
 
 local servers = {
-  clangd = { filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" }, },
-  ruff = { filetypes = { "python" }, },
+  clangd = { filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" } },
+  ruff = { filetypes = { "python" } },
   pyright = {
     filetypes = { "python" },
-    pyright = { disableOrganizeImports = true, },
-    python = { analysis = { ignore = { '*' }, }, },
+    pyright = { disableOrganizeImports = true },
+    python = { analysis = { ignore = { "*" } } },
   },
   gopls = {
     filetypes = { "go", "gomod", "gowork", "gotmpl" },
@@ -42,17 +42,45 @@ local servers = {
       "-Dlog.level=ALL",
       "-Xms1g",
       "--add-modules=ALL-SYSTEM",
-      "--add-opens", "java.base/java.util=ALL-UNNAMED",
-      "--add-opens", "java.base/java.lang=ALL-UNNAMED",
-      "-javaagent:" .. vim.fn.expand("~/.local/share/nvim/mason/share/jdtls/lombok.jar"),
-      "-jar", vim.fn.glob(vim.fn.expand("~/.local/share/nvim/mason/share/jdtls/plugins/org.eclipse.equinox.launcher_*.jar")),
-      "-configuration", vim.fn.expand("~/.local/share/nvim/mason/share/jdtls/config_linux"),
-      "-data", vim.fn.stdpath("data") .. "/site/java/workspace-root/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t"),
+      "--add-opens",
+      "java.base/java.util=ALL-UNNAMED",
+      "--add-opens",
+      "java.base/java.lang=ALL-UNNAMED",
+      "-javaagent:" .. vim.fn.expand "~/.local/share/nvim/mason/share/jdtls/lombok.jar",
+      "-jar",
+      vim.fn.glob(vim.fn.expand "~/.local/share/nvim/mason/share/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
+      "-configuration",
+      vim.fn.expand "~/.local/share/nvim/mason/share/jdtls/config_linux",
+      "-data",
+      vim.fn.stdpath "data" .. "/site/java/workspace-root/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t"),
+    },
+  },
+  ts_ls = {
+    filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+    cmd = { "typescript-language-server", "--stdio" },
+    settings = {
+      typescript = {
+        format = { enable = true },
+      },
+      javascript = {
+        format = { enable = true },
+      },
+    },
+  },
+  eslint = {
+    filetypes = {
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+    },
+    settings = {
+      workingDirectory = { mode = "auto" },
     },
   },
 }
 
 for server, settings in pairs(servers) do
-  lsp.config(server, { settings = settings, })
+  lsp.config(server, { settings = settings })
   lsp.enable(server)
 end

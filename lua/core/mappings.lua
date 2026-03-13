@@ -11,7 +11,7 @@ M.general = {
     ["<C-k>"] = { "<Up>", "Move up" },
 
     -- return to normal mode
-    ["jk"] = { "<Esc>", "Return to normal mode" }
+    ["jk"] = { "<Esc>", "Return to normal mode" },
   },
 
   n = {
@@ -20,6 +20,10 @@ M.general = {
     -- adding blank lines
     ["zj"] = { "o<Esc>k", "Add blank line below" },
     ["zk"] = { "O<Esc>j", "Add blank line above" },
+
+    -- better nevegation scroll
+    ["<Up>"] = { "3<C-y>", "Scroll window up" },
+    ["<Down>"] = { "3<C-e>", "Scroll window down" },
 
     -- Move lines
     ["<A-j>"] = { '"0ddp', "Move line down" },
@@ -43,16 +47,13 @@ M.general = {
     -- Copy all
     ["<C-c>"] = { "<cmd> %y+ <CR>", "Copy whole file" },
     -- Copy to clipboard register
-    ["<C-y>"] = { '"+yy', "Copy line"},
+    ["<C-y>"] = { '"+yy', "Copy line" },
     --Highlight all
     ["<leader>ha"] = { "<cmd> HighlightAll <CR>", "Highlight whole file" },
 
     -- Navigation
-    ["<C-d>"] = { "<C-d>zz" ,"Scroll down half screen" },
+    ["<C-d>"] = { "<C-d>zz", "Scroll down half screen" },
     ["<C-u>"] = { "<C-u>zz", "Scroll up half screen" },
-
-    ["gi"] = { "ggO", "Insert in the beggining of the file" },
-    ["ga"] = { "Go", "Insert in the end of the file" },
 
     -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
     -- http://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
@@ -60,8 +61,8 @@ M.general = {
     -- also don't use g[j|k] when in operator pending mode, so it doesn't alter d, y or c behaviour
     ["j"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
     ["k"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true } },
-    ["<Up>"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true } },
-    ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
+    -- ["<Up>"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true } },
+    -- ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
 
     -- manage buffers
     ["<leader>x"] = { "<cmd> bdelete <CR>", "Close current buffer" },
@@ -82,7 +83,7 @@ M.general = {
       function()
         vim.wo.foldcolumn = (vim.wo.foldcolumn == "0") and "1" or "0"
       end,
-      "Toggle fold column"
+      "Toggle fold column",
     },
   },
 
@@ -188,7 +189,7 @@ M.lspconfig = {
 
     ["S"] = {
       function()
-        vim.diagnostic.open_float { border = nil , source = false, }
+        vim.diagnostic.open_float { border = nil, source = true }
       end,
       "Floating diagnostic",
     },
@@ -235,14 +236,14 @@ M.telescope = {
     ["<leader>fn"] = { "<cmd> Telescope noice <CR>", "Noice History" },
 
     -- git
-    ["<leader>gt"] = { "<cmd> Telescope git_status <CR>", "Git status" },
+    ["<leader>gs"] = { "<cmd> Telescope git_status <CR>", "Git status" },
     ["<leader>lg"] = { "<cmd> LazyGit <CR>", "LazyGit" },
 
     -- ui
     ["<leader>th"] = { "<cmd> Telescope themes <CR>", "Nvchad themes" },
 
     -- diagnostic
-    ["<leader>fd"] = { "<cmd> Telescope diagnostics <CR>", "Telescope diagnostics"},
+    ["<leader>fd"] = { "<cmd> Telescope diagnostics <CR>", "Telescope diagnostics" },
 
     -- vim marks and registers
     ["<leader>ma"] = { "<cmd> Telescope marks <CR>", "Telescope bookmarks" },
@@ -256,16 +257,9 @@ M.whichkey = {
   n = {
     ["<leader>wK"] = {
       function()
-        vim.cmd "WhichKey"
+        require("which-key").show("", "All")
       end,
       "Which-key all keymaps",
-    },
-    ["<leader>wk"] = {
-      function()
-        local input = vim.fn.input "WhichKey: "
-        vim.cmd("WhichKey " .. input)
-      end,
-      "Which-key query lookup",
     },
   },
 }
@@ -319,10 +313,10 @@ M.gitsigns = {
     },
 
     ["<leader>sh"] = {
-      function ()
+      function()
         require("gitsigns").stage_hunk()
       end,
-      "Stage hunk",
+      "Toggle Stage hunk",
     },
 
     ["<leader>gb"] = {
@@ -347,6 +341,75 @@ M.leap = {
   },
   o = {
     ["s"] = { "<Plug>(leap-anywhere)", "Leap forward" },
+  },
+}
+
+M.copilot = {
+  i = {
+    -- Accept the WHOLE suggestion
+    ["<A-l>"] = {
+      function()
+        require("copilot.suggestion").accept()
+      end,
+      "Accept Copilot suggestion",
+    },
+
+    -- Accept just the next WORD
+    ["<A-w>"] = {
+      function()
+        require("copilot.suggestion").accept_word()
+      end,
+      "Accept Copilot word",
+    },
+
+    -- Accept just the next LINE
+    ["<A-a>"] = {
+      function()
+        require("copilot.suggestion").accept_line()
+      end,
+      "Accept Copilot line",
+    },
+
+    ["<A-]>"] = {
+      function()
+        require("copilot.suggestion").next()
+      end,
+      "Next Copilot suggestion",
+    },
+
+    ["<A-[>"] = {
+      function()
+        require("copilot.suggestion").prev()
+      end,
+      "Prev Copilot suggestion",
+    },
+
+    ["<A-h>"] = {
+      function()
+        require("copilot.suggestion").dismiss()
+      end,
+      "Dismiss Copilot suggestion",
+    },
+  },
+}
+
+M.inc_rename = {
+  n = {
+    ["<leader>rn"] = {
+      function()
+        return ":IncRename " .. vim.fn.expand "<cword>"
+      end,
+      "Incremental rename",
+      opts = { expr = true },
+    },
+  },
+  v = {
+    ["<leader>rn"] = {
+      function()
+        return ":IncRename " .. vim.fn.expand "<cword>"
+      end,
+      "LSP rename",
+    },
   },
 }
 
