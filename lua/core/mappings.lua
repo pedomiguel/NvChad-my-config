@@ -61,8 +61,6 @@ M.general = {
     -- also don't use g[j|k] when in operator pending mode, so it doesn't alter d, y or c behaviour
     ["j"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
     ["k"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true } },
-    -- ["<Up>"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true } },
-    -- ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
 
     -- manage buffers
     ["<leader>x"] = { "<cmd> bdelete <CR>", "Close current buffer" },
@@ -70,13 +68,6 @@ M.general = {
     ["<S-Tab>"] = { "<cmd> bprevious <CR>", "Go to previous buffer" },
 
     ["<leader>ch"] = { "<cmd> NvCheatsheet <CR>", "Mapping cheatsheet" },
-
-    ["<leader>fm"] = {
-      function()
-        vim.lsp.buf.format { async = true }
-      end,
-      "LSP formatting",
-    },
 
     -- folding
     ["<leader>fc"] = {
@@ -131,12 +122,6 @@ M.lspconfig = {
   -- See `<cmd> :help vim.lsp.*` for documentation on any of the below functions
 
   n = {
-    ["gD"] = {
-      function()
-        vim.lsp.buf.declaration()
-      end,
-      "LSP declaration",
-    },
 
     ["gd"] = {
       function()
@@ -147,7 +132,11 @@ M.lspconfig = {
 
     ["K"] = {
       function()
-        vim.lsp.buf.hover()
+        vim.lsp.buf.hover {
+          border = "rounded",
+          max_width = 80,
+          max_height = 20,
+        }
       end,
       "LSP hover",
     },
@@ -180,14 +169,7 @@ M.lspconfig = {
       "LSP code action",
     },
 
-    ["gr"] = {
-      function()
-        vim.lsp.buf.references()
-      end,
-      "LSP references",
-    },
-
-    ["S"] = {
+    ["<leader>e"] = {
       function()
         vim.diagnostic.open_float { border = nil, source = true }
       end,
@@ -232,22 +214,26 @@ M.telescope = {
     ["<leader>fo"] = { "<cmd> Telescope oldfiles <CR>", "Find oldfiles" },
     ["<leader>fz"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "Find in current buffer" },
     ["<leader>ft"] = { "<cmd> Telescope file_browser <CR>", "Open File Browser" },
-    ["<leader>fs"] = { "<cmd> Telescope lsp_document_symbols <CR>", "Find Symbols" },
     ["<leader>fn"] = { "<cmd> Telescope noice <CR>", "Noice History" },
 
     -- git
     ["<leader>gs"] = { "<cmd> Telescope git_status <CR>", "Git status" },
-    ["<leader>lg"] = { "<cmd> LazyGit <CR>", "LazyGit" },
 
     -- ui
     ["<leader>th"] = { "<cmd> Telescope themes <CR>", "Nvchad themes" },
 
-    -- diagnostic
+    -- lsp
+    ["<leader>ci"] = { "<cmd> Telescope lsp_incoming_calls <CR>", "Telescope incoming calls" },
+    ["<leader>co"] = { "<cmd> Telescope lsp_outgoing_calls <CR>", "Telescope outgoing calls" },
     ["<leader>fd"] = { "<cmd> Telescope diagnostics <CR>", "Telescope diagnostics" },
+    ["<leader>fr"] = { "<cmd> Telescope lsp_references <CR>", "Telescope references" },
+    ["<leader>fs"] = { "<cmd> Telescope lsp_document_symbols <CR>", "Find Symbols" },
+    ["<leader>ws"] = { "<cmd> Telescope lsp_dynamic_workspace_symbols <CR>", "Workspace symbols" },
 
-    -- vim marks and registers
+    -- vim marks, registers and jumplist
     ["<leader>ma"] = { "<cmd> Telescope marks <CR>", "Telescope bookmarks" },
     ["<leader>rg"] = { "<cmd> Telescope registers <CR>", "Telescope registers" },
+    ["<leader>jl"] = { "<cmd> Telescope jumplist <CR>", "Telescope jumplist" },
   },
 }
 
@@ -255,12 +241,15 @@ M.whichkey = {
   plugin = true,
 
   n = {
-    ["<leader>wK"] = {
-      function()
-        require("which-key").show("", "All")
-      end,
-      "Which-key all keymaps",
-    },
+    ["<leader>wk"] = { "<cmd> WhichKey <CR>", "Whichkey maps" },
+  },
+}
+
+M.lazygit = {
+  plugin = true,
+
+  n = {
+    ["<leader>lg"] = { "<cmd> LazyGit <CR>", "Open LazyGit" },
   },
 }
 

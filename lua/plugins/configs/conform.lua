@@ -7,6 +7,8 @@ require("conform").setup {
     go = { "gofmt" },
     javascript = { "eslint" },
     typescript = { "eslint" },
+    haskell = { "ormolu" },
+    java = { "google_java_format" },
   },
   format_on_save = {
     timeout_ms = 500,
