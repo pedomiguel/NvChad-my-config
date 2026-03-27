@@ -44,12 +44,9 @@ M.general = {
     ["<C-Right>"] = { "<cmd> vertical resize +2 <CR>", "Increase horizontal window size" },
     ["<C-Left>"] = { "<cmd> vertical resize -2 <CR>", "Decrease horizontal window size" },
 
-    -- Copy all
+    -- Copy
     ["<C-c>"] = { "<cmd> %y+ <CR>", "Copy whole file" },
-    -- Copy to clipboard register
     ["<C-y>"] = { '"+yy', "Copy line" },
-    --Highlight all
-    ["<leader>ha"] = { "<cmd> HighlightAll <CR>", "Highlight whole file" },
 
     -- Navigation
     ["<C-d>"] = { "<C-d>zz", "Scroll down half screen" },
@@ -201,6 +198,12 @@ M.lspconfig = {
   },
 }
 
+M.treesj = {
+  n = {
+    ["<leader>tj"] = { "<cmd> TSJToggle <CR>", "Toggle TJS" },
+  },
+}
+
 M.telescope = {
   plugin = true,
 
@@ -238,7 +241,7 @@ M.telescope = {
 }
 
 M.whichkey = {
-  plugin = true,
+  plugin = false,
 
   n = {
     ["<leader>wk"] = { "<cmd> WhichKey <CR>", "Whichkey maps" },
@@ -246,7 +249,7 @@ M.whichkey = {
 }
 
 M.lazygit = {
-  plugin = true,
+  plugin = false,
 
   n = {
     ["<leader>lg"] = { "<cmd> LazyGit <CR>", "Open LazyGit" },

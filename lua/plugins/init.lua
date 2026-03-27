@@ -313,6 +313,15 @@ local plugins = {
       return require "plugins.configs.inc_rename"
     end,
   },
+
+  {
+    "Wansmer/treesj",
+    dependencies = { "nvim-treesitter/nvim-treesitter" }, -- if you install parsers with `nvim-treesitter`
+    event = "LspAttach",
+    config = function()
+      require "plugins.configs.treesj"
+    end,
+  },
 }
 
 local config = require("core.utils").load_config()
