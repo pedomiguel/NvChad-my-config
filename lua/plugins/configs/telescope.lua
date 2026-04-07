@@ -2,8 +2,8 @@ local telescope = require "telescope"
 local actions = require "telescope.actions"
 local fb_actions = require "telescope._extensions.file_browser.actions"
 
-local function close_buffer(prompt_bufrn)
-  local sucess, err = pcall(actions.delete_buffer, prompt_bufrn)
+local function close_buffer(prompt_bufnr)
+  local sucess, err = pcall(actions.delete_buffer, prompt_bufnr)
 
   if not sucess then
     print("Error: This buffer cannot be closed! (" .. err .. ")")
@@ -93,7 +93,9 @@ local options = {
       mappings = {
         n = {
           ["<bs>"] = fb_actions.goto_parent_dir, -- g is the default
+          ["."] = fb_actions.toggle_hidden,
           ["e"] = false,
+          ["h"] = false,
         },
         i = {
           ["<bs>"] = false, -- Unbinding backspace

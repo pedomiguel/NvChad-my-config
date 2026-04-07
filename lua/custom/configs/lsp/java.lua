@@ -1,5 +1,4 @@
 return {
-  google_java_format = { filetypes = { "java" } },
   jdtls = {
     filetypes = { "java" },
     root_markers = { "mvnw", "gradlew", "pom.xml", "build.gradle" },

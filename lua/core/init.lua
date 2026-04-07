@@ -17,6 +17,7 @@ g.health = { style = "float" }
 -------------------------------------- options ------------------------------------------
 opt.laststatus = 3 -- global statusline
 opt.showmode = false
+opt.cmdheight = 0
 
 opt.wrap = true
 
@@ -102,7 +103,7 @@ autocmd("BufWritePre", {
   desc = "Trim trailing whitespace on save",
 })
 
-autocmd({ "FocusGained", "BufEnter" }, {
+autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
   pattern = "*",
   callback = function()
     vim.cmd "checktime"

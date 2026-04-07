@@ -336,55 +336,6 @@ M.leap = {
   },
 }
 
-M.copilot = {
-  i = {
-    -- Accept the WHOLE suggestion
-    ["<A-l>"] = {
-      function()
-        require("copilot.suggestion").accept()
-      end,
-      "Accept Copilot suggestion",
-    },
-
-    -- Accept just the next WORD
-    ["<A-w>"] = {
-      function()
-        require("copilot.suggestion").accept_word()
-      end,
-      "Accept Copilot word",
-    },
-
-    -- Accept just the next LINE
-    ["<A-a>"] = {
-      function()
-        require("copilot.suggestion").accept_line()
-      end,
-      "Accept Copilot line",
-    },
-
-    ["<A-]>"] = {
-      function()
-        require("copilot.suggestion").next()
-      end,
-      "Next Copilot suggestion",
-    },
-
-    ["<A-[>"] = {
-      function()
-        require("copilot.suggestion").prev()
-      end,
-      "Prev Copilot suggestion",
-    },
-
-    ["<A-h>"] = {
-      function()
-        require("copilot.suggestion").dismiss()
-      end,
-      "Dismiss Copilot suggestion",
-    },
-  },
-}
-
 M.inc_rename = {
   n = {
     ["<leader>rn"] = {
