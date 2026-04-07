@@ -287,14 +287,10 @@ local plugins = {
   },
 
   {
-    "zbirenbaum/copilot.lua",
-    dependencies = {
-      "copilotlsp-nvim/copilot-lsp", -- (optional) for NES functionality
-    },
-    cmd = "Copilot",
-    event = "InsertEnter",
+    "github/copilot.vim",
+    lazy = false,
     config = function()
-      return require "plugins.configs.copilot"
+      require "plugins.configs.copilot"
     end,
   },
 
