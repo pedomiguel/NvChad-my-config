@@ -26,11 +26,11 @@ M.general = {
     ["<Down>"] = { "3<C-e>", "Scroll window down" },
 
     -- Move lines
-    ["<A-j>"] = { '"0ddp', "Move line down" },
-    ["<A-k>"] = { '"0ddkP', "Move line up" },
+    ["<A-j>"] = { "<cmd> m .+1<CR>==", "Move line down" },
+    ["<A-k>"] = { "<cmd> m .-2<CR>==", "Move line up" },
 
     -- break the line
-    ["gj"] = { "i<CR><Esc>k$", "Break the line" },
+    ["gj"] = { "i<CR><Esc>", "Split line at cursor" },
 
     -- switch between windows
     ["<C-h>"] = { "<C-w>h", "Window left" },
@@ -216,8 +216,86 @@ M.telescope = {
     ["<leader>fh"] = { "<cmd> Telescope help_tags <CR>", "Help page" },
     ["<leader>fo"] = { "<cmd> Telescope oldfiles <CR>", "Find oldfiles" },
     ["<leader>fz"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "Find in current buffer" },
-    ["<leader>ft"] = { "<cmd> Telescope file_browser <CR>", "Open File Browser" },
+    ["<leader>fe"] = { "<cmd> Telescope file_browser <CR>", "Open File Browser" },
     ["<leader>fn"] = { "<cmd> Telescope noice <CR>", "Noice History" },
+    ["<leader>fl"] = { "<cmd> Telescope resume <CR>", "Telescope last search" },
+
+    ["<leader>fd"] = { -- Custom find directorie
+      function()
+        local telescope = require "telescope"
+        local finders = require "telescope.finders"
+        local pickers = require "telescope.pickers"
+        local conf = require("telescope.config").values
+        local actions = require "telescope.actions"
+        local action_state = require "telescope.actions.state"
+        local previewers = require "telescope.previewers"
+        local entry_display = require "telescope.pickers.entry_display"
+
+        local folder_hl = "TelescopeResultsIdentifier"
+        local folder_icon = ""
+
+        local displayer = entry_display.create {
+          separator = " ",
+          items = {
+            { width = 3 }, -- icon
+            { remaining = true }, -- path
+          },
+        }
+
+        local function make_display(entry)
+          return displayer {
+            { folder_icon, folder_hl },
+            { entry.value, "TelescopeResultsIdentifier" },
+          }
+        end
+
+        local function entry_maker(line)
+          return {
+            value = line,
+            display = make_display,
+            ordinal = line,
+          }
+        end
+
+        local dir_previewer = previewers.new_termopen_previewer {
+          title = "Directory Contents",
+          get_command = function(entry)
+            return {
+              "eza",
+              "--icons",
+              "--group-directories-first",
+              "--color=always",
+              "-la",
+              entry.value,
+            }
+          end,
+        }
+
+        pickers
+          .new({}, {
+            prompt_title = "Find Directory",
+            -- Inherits your layout_config from defaults automatically
+            finder = finders.new_oneshot_job(
+              { "fd", "--type", "d", "--hidden", "--exclude", ".git" },
+              { entry_maker = entry_maker }
+            ),
+            sorter = conf.file_sorter {},
+            previewer = dir_previewer,
+            attach_mappings = function(prompt_bufnr)
+              actions.select_default:replace(function()
+                local selection = action_state.get_selected_entry()
+                actions.close(prompt_bufnr)
+                if selection then
+                  telescope.extensions.file_browser.file_browser { path = selection.value }
+                end
+              end)
+              return true
+            end,
+          })
+          :find()
+      end,
+      "Find directory → file_browser",
+    },
 
     -- git
     ["<leader>gs"] = { "<cmd> Telescope git_status <CR>", "Git status" },
@@ -228,7 +306,7 @@ M.telescope = {
     -- lsp
     ["<leader>ci"] = { "<cmd> Telescope lsp_incoming_calls <CR>", "Telescope incoming calls" },
     ["<leader>co"] = { "<cmd> Telescope lsp_outgoing_calls <CR>", "Telescope outgoing calls" },
-    ["<leader>fd"] = { "<cmd> Telescope diagnostics <CR>", "Telescope diagnostics" },
+    ["<leader>di"] = { "<cmd> Telescope diagnostics <CR>", "Telescope diagnostics" },
     ["<leader>fr"] = { "<cmd> Telescope lsp_references <CR>", "Telescope references" },
     ["<leader>fs"] = { "<cmd> Telescope lsp_document_symbols <CR>", "Find Symbols" },
     ["<leader>ws"] = { "<cmd> Telescope lsp_dynamic_workspace_symbols <CR>", "Workspace symbols" },
