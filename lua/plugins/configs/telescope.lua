@@ -10,6 +10,13 @@ local function close_buffer(prompt_bufnr)
   end
 end
 
+local function select_and_center(prompt_bufnr)
+  actions.select_default(prompt_bufnr)
+  vim.schedule(function()
+    vim.cmd "normal! zz"
+  end)
+end
+
 local options = {
   defaults = {
     vimgrep_arguments = {
@@ -32,20 +39,20 @@ local options = {
     layout_config = {
       horizontal = {
         prompt_position = "top",
-        preview_width = 0.55,
-        results_width = 0.8,
+        preview_width = 0.65,
+        results_width = 0.35,
       },
       vertical = {
         mirror = false,
       },
-      width = 0.87,
-      height = 0.80,
+      width = 0.95,
+      height = 0.85,
       preview_cutoff = 0,
     },
     file_sorter = require("telescope.sorters").get_fuzzy_file,
     file_ignore_patterns = { "node_modules" },
     generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
-    path_display = { "truncate" },
+    path_display = { "smart" },
     winblend = 0,
     border = {},
     borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
@@ -58,11 +65,15 @@ local options = {
     buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
     mappings = {
       n = {
+        ["<CR>"] = select_and_center,
         ["q"] = actions.close,
         ["x"] = close_buffer,
         ["<C-h>"] = actions.file_split,
         ["<Up>"] = actions.cycle_history_prev,
         ["<Down>"] = actions.cycle_history_next,
+      },
+      i = {
+        ["<CR>"] = select_and_center,
       },
     },
   },
